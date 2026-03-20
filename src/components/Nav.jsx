@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const navItems = [
+const memoItems = [
   { href: '#header', label: 'Overview' },
   { href: '#recommendation', label: 'Recommendation' },
   { href: '#arguments', label: 'Key Arguments & Risks' },
@@ -16,8 +16,18 @@ const navItems = [
   { href: '#sources', label: 'Sources' },
 ]
 
-export default function Nav() {
-  const [activeId, setActiveId] = useState('header')
+const analysisItems = [
+  { href: '#integration-heatmap', label: 'Integration Heatmap' },
+  { href: '#tam-filter', label: 'TAM Adoption Filter' },
+  { href: '#debt-recovery-calc', label: 'Debt Recovery Calculator' },
+  { href: '#competitor-radar', label: 'Competitor Radar' },
+  { href: '#calculator', label: 'Return Sensitivity Model' },
+  { href: '#tam-waterfall', label: 'TAM Waterfall' },
+]
+
+export default function Nav({ view, setView }) {
+  const [activeId, setActiveId] = useState('')
+  const navItems = view === 'memo' ? memoItems : analysisItems
 
   useEffect(() => {
     const targetIds = navItems.map((item) => item.href.slice(1))
@@ -31,12 +41,21 @@ export default function Nav() {
       if (current) setActiveId(current)
     }
     window.addEventListener('scroll', onScroll)
+    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [view])
 
   return (
     <nav>
       <div className="nav-title">Sunbay.io Memo</div>
+      <div className="nav-view-toggle">
+        <button className={`tam-btn${view === 'memo' ? ' active' : ''}`} onClick={() => setView('memo')}>
+          Memo
+        </button>
+        <button className={`tam-btn${view === 'analysis' ? ' active' : ''}`} onClick={() => setView('analysis')}>
+          Analysis
+        </button>
+      </div>
       {navItems.map((item) => (
         <a
           key={item.href}

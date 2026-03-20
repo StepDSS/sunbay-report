@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Nav from './components/Nav'
 import Header from './components/Header'
 import Recommendation from './components/Recommendation'
@@ -11,24 +12,44 @@ import RoundReturns from './components/RoundReturns'
 import ReturnCalculator from './components/ReturnCalculator'
 import TAMWaterfall from './components/TAMWaterfall'
 import SourcesSection from './components/SourcesSection'
+import IntegrationHeatmap from './components/IntegrationHeatmap'
+import TAMAdoptionFilter from './components/TAMAdoptionFilter'
+import DebtRecoveryCalc from './components/DebtRecoveryCalc'
+import CompetitorRadar from './components/CompetitorRadar'
 
 export default function App() {
+  const [view, setView] = useState('memo')
   return (
     <>
-      <Nav />
+      <Nav view={view} setView={setView} />
       <main>
-        <Header />
-        <Recommendation />
-        <KeyArguments />
-        <TeamSection />
-        <ProductSection />
-        <MarketSection />
-        <CompetitiveSection />
-        <TractionSection />
-        <RoundReturns />
-        <ReturnCalculator />
-        <TAMWaterfall />
-        <SourcesSection />
+        {view === 'memo' ? (
+          <>
+            <Header />
+            <Recommendation />
+            <KeyArguments />
+            <TeamSection />
+            <ProductSection />
+            <MarketSection />
+            <CompetitiveSection />
+            <TractionSection />
+            <RoundReturns />
+            <ReturnCalculator />
+            <TAMWaterfall />
+            <SourcesSection />
+          </>
+        ) : (
+          <>
+            <h1 style={{ marginBottom: '0.5rem' }}>Interactive Analysis</h1>
+            <p className="subtitle">Sunbay.io — Data Explorer</p>
+            <IntegrationHeatmap />
+            <TAMAdoptionFilter />
+            <DebtRecoveryCalc />
+            <CompetitorRadar />
+            <ReturnCalculator />
+            <TAMWaterfall />
+          </>
+        )}
       </main>
     </>
   )

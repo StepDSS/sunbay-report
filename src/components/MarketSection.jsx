@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import SectionToggle from './SectionToggle'
 
 const tamData = {
   conservative: [
@@ -29,45 +30,62 @@ export default function MarketSection() {
           <li>Germany + France combined: ~EUR430M TAM, ~326K companies.</li>
         </ul>
       </div>
-      <h4>TAM Summary</h4>
-      <div>
-        <div className="tam-toggle">
-          <button className={`tam-btn${tamType === 'conservative' ? ' active' : ''}`} onClick={() => setTamType('conservative')}>Conservative</button>
-          <button className={`tam-btn${tamType === 'extended' ? ' active' : ''}`} onClick={() => setTamType('extended')}>Extended</button>
-        </div>
-        <div style={{ overflowX: 'auto' }}>
-        <table>
-          <thead><tr><th>Geography</th><th>TAM</th><th>Enterprise Count</th><th>ARPC</th></tr></thead>
-          <tbody>
-            {rows.map((row, i) => (
-              <tr key={i}>
-                {row.map((cell, j) => <td key={j}>{cell}</td>)}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        </div>
-        <p style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Assumptions: ARPC = EUR1,320/yr; 10-249 employee firms; B2B sectors only; no adoption rate applied.</p>
-      </div>
-      <details className="footnotes">
-        <summary>Methodology — TAM Calculation</summary>
-        <div className="detail-content">
-          <ul>
-            <li><strong>Enterprise scope:</strong> 10-249 employees (NACE non-financial economy). Micro (0-9) excluded: too small for dedicated AR tooling. Large (250+) excluded: served by enterprise solutions (Tesorio, HighRadius).</li>
-            <li><strong>ARPC calculation:</strong> Midpoint of Sunbay Basic (EUR1,200/yr) and Standard (EUR1,440/yr) = EUR1,320/yr. Custom tier excluded. Blended ARPC depends on customer mix.</li>
-            <li><strong>Conservative sectors:</strong> B+C+D+E (Industry), F (Construction), H (Transport), M (Professional/scientific/tech), N (Admin &amp; support).</li>
-            <li><strong>Extended additions:</strong> G46 Wholesale (100% B2B), G45 Motor vehicles (50% B2B), J Info &amp; communication (75% B2B), L Real estate (50% B2B). G47 Retail excluded (B2C).</li>
-            <li><strong>Data quality:</strong> [A] = official government statistics (GUS 2024, Destatis, Eurostat). [B] = survey data. [C] = market reports. [D] = own estimates.</li>
-            <li><strong>Key caveat:</strong> No adoption rate applied. The 10-249 segment is shrinking (-0.6% YoY).</li>
-            <li><strong>Sources:</strong> <a href="https://bdl.stat.gov.pl/BDL/start" target="_blank" rel="noopener noreferrer">GUS Bank Danych Lokalnych</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/SBS_SC_OVW/" target="_blank" rel="noopener noreferrer">Eurostat SBS</a>, <a href="https://sunbay.io/pricing" target="_blank" rel="noopener noreferrer">Sunbay.io pricing page</a>.</li>
-          </ul>
-          <p style={{ marginTop: '0.75rem', marginBottom: 0 }}><a href="#sources" style={{ color: 'var(--orange)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none' }}>View all sources</a></p>
-        </div>
-      </details>
+      <div className="section-toggles">
+        <SectionToggle label="TAM Data">
+          <h4>TAM Summary</h4>
+          <div className="tam-toggle">
+            <button className={`tam-btn${tamType === 'conservative' ? ' active' : ''}`} onClick={() => setTamType('conservative')}>Conservative</button>
+            <button className={`tam-btn${tamType === 'extended' ? ' active' : ''}`} onClick={() => setTamType('extended')}>Extended</button>
+          </div>
+          <div style={{ overflowX: 'auto' }}>
+            <table>
+              <thead><tr><th>Geography</th><th>TAM</th><th>Enterprise Count</th><th>ARPC</th></tr></thead>
+              <tbody>
+                {rows.map((row, i) => (
+                  <tr key={i}>
+                    {row.map((cell, j) => <td key={j}>{cell}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Assumptions: ARPC = EUR1,320/yr; 10-249 employee firms; B2B sectors only; no adoption rate applied.</p>
 
-      <details>
-        <summary>Detailed TAM Calculations by Country</summary>
-        <div className="detail-content">
+          <h4>Late Payment Severity (Poland)</h4>
+          <div style={{ overflowX: 'auto' }}>
+            <table>
+              <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
+              <tbody>
+                <tr><td>Companies affected by late payments</td><td style={{ color: 'var(--risk)' }}>72% (highest in EU)</td><td><a href="https://single-market-economy.ec.europa.eu/smes/challenges-and-resilience/late-payment/eu-payment-observatory/observatory-analysis_en" target="_blank" rel="noopener noreferrer">EU Payment Observatory 2025</a></td></tr>
+                <tr><td>Avg B2B payment period</td><td>60+ days</td><td><a href="https://www.intrum.com/insights/publications/epr-2025/" target="_blank" rel="noopener noreferrer">Intrum EPR 2025</a></td></tr>
+                <tr><td>B2B invoices overdue</td><td>38%</td><td><a href="https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-western-europe-2025" target="_blank" rel="noopener noreferrer">Atradius 2025</a> (n=210)</td></tr>
+                <tr><td>Total overdue business debt</td><td>&gt;45 bn PLN</td><td><a href="https://big.pl/raporty" target="_blank" rel="noopener noreferrer">BIG InfoMonitor</a> end 2025</td></tr>
+                <tr><td>Firms planning mitigation in 2026</td><td>76%</td><td><a href="https://big.pl/raporty" target="_blank" rel="noopener noreferrer">BIG InfoMonitor</a> (n=500)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Integration Landscape</h4>
+          <div style={{ overflowX: 'auto' }}>
+            <table>
+              <thead><tr><th>System</th><th>API Type</th><th>Difficulty</th><th>Sunbay?</th></tr></thead>
+              <tbody>
+                <tr><td>Fakturownia</td><td>REST JSON/XML</td><td>Low</td><td>Yes</td></tr>
+                <tr><td>Systim</td><td>JSON POST/GET</td><td>Low</td><td>Yes</td></tr>
+                <tr><td>wFirma</td><td>REST JSON</td><td>Low-Mod</td><td>Yes</td></tr>
+                <tr><td>Saldeo Smart</td><td>REST XML</td><td>Low-Mod</td><td>Yes</td></tr>
+                <tr><td>inFakt</td><td>REST JSON v3</td><td>Low</td><td>Yes</td></tr>
+                <tr><td>Subiekt123</td><td>REST via InsERT</td><td>Moderate</td><td>Yes</td></tr>
+                <tr><td>DATEV (DE)</td><td>Batch CSV/XML</td><td style={{ color: 'var(--risk)' }}>High</td><td>No</td></tr>
+                <tr><td>sevDesk (DE)</td><td>REST/JSON</td><td>Moderate</td><td>No</td></tr>
+                <tr><td>Lexware (DE)</td><td>REST/JSON</td><td>Moderate</td><td>No</td></tr>
+                <tr><td>Pennylane (FR)</td><td>REST/JSON v2</td><td>Moderate</td><td>No</td></tr>
+                <tr><td>Sage 100 (FR)</td><td>Custom</td><td style={{ color: 'var(--risk)' }}>High</td><td>No</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </SectionToggle>
+        <SectionToggle label="Methodology">
           <h4 style={{ marginTop: '0.5rem' }}>Poland — Sector Breakdown</h4>
           <table>
             <thead><tr><th>NACE Sector</th><th>Enterprises (10-249)</th><th>Inclusion</th></tr></thead>
@@ -137,41 +155,18 @@ export default function MarketSection() {
             </tbody>
           </table>
           <p style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Confidence key: [A] = official government statistics. [B] = survey data. [C] = market reports. [D] = own estimates.</p>
-        </div>
-      </details>
-
-      <h4>Late Payment Severity (Poland)</h4>
-      <div style={{ overflowX: 'auto' }}>
-      <table>
-        <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
-        <tbody>
-          <tr><td>Companies affected by late payments</td><td style={{ color: 'var(--risk)' }}>72% (highest in EU)</td><td><a href="https://single-market-economy.ec.europa.eu/smes/challenges-and-resilience/late-payment/eu-payment-observatory/observatory-analysis_en" target="_blank" rel="noopener noreferrer">EU Payment Observatory 2025</a></td></tr>
-          <tr><td>Avg B2B payment period</td><td>60+ days</td><td><a href="https://www.intrum.com/insights/publications/epr-2025/" target="_blank" rel="noopener noreferrer">Intrum EPR 2025</a></td></tr>
-          <tr><td>B2B invoices overdue</td><td>38%</td><td><a href="https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-western-europe-2025" target="_blank" rel="noopener noreferrer">Atradius 2025</a> (n=210)</td></tr>
-          <tr><td>Total overdue business debt</td><td>&gt;45 bn PLN</td><td><a href="https://big.pl/raporty" target="_blank" rel="noopener noreferrer">BIG InfoMonitor</a> end 2025</td></tr>
-          <tr><td>Firms planning mitigation in 2026</td><td>76%</td><td><a href="https://big.pl/raporty" target="_blank" rel="noopener noreferrer">BIG InfoMonitor</a> (n=500)</td></tr>
-        </tbody>
-      </table>
-      </div>
-
-      <h4>Integration Landscape</h4>
-      <div style={{ overflowX: 'auto' }}>
-      <table>
-        <thead><tr><th>System</th><th>API Type</th><th>Difficulty</th><th>Sunbay?</th></tr></thead>
-        <tbody>
-          <tr><td>Fakturownia</td><td>REST JSON/XML</td><td>Low</td><td>Yes</td></tr>
-          <tr><td>Systim</td><td>JSON POST/GET</td><td>Low</td><td>Yes</td></tr>
-          <tr><td>wFirma</td><td>REST JSON</td><td>Low-Mod</td><td>Yes</td></tr>
-          <tr><td>Saldeo Smart</td><td>REST XML</td><td>Low-Mod</td><td>Yes</td></tr>
-          <tr><td>inFakt</td><td>REST JSON v3</td><td>Low</td><td>Yes</td></tr>
-          <tr><td>Subiekt123</td><td>REST via InsERT</td><td>Moderate</td><td>Yes</td></tr>
-          <tr><td>DATEV (DE)</td><td>Batch CSV/XML</td><td style={{ color: 'var(--risk)' }}>High</td><td>No</td></tr>
-          <tr><td>sevDesk (DE)</td><td>REST/JSON</td><td>Moderate</td><td>No</td></tr>
-          <tr><td>Lexware (DE)</td><td>REST/JSON</td><td>Moderate</td><td>No</td></tr>
-          <tr><td>Pennylane (FR)</td><td>REST/JSON v2</td><td>Moderate</td><td>No</td></tr>
-          <tr><td>Sage 100 (FR)</td><td>Custom</td><td style={{ color: 'var(--risk)' }}>High</td><td>No</td></tr>
-        </tbody>
-      </table>
+        </SectionToggle>
+        <SectionToggle label="Sources" variant="source">
+          <ul>
+            <li><a href="https://bdl.stat.gov.pl/BDL/start" target="_blank" rel="noopener noreferrer">GUS Bank Danych Lokalnych</a> (2024) — Polish enterprise counts by NACE sector</li>
+            <li><a href="https://ec.europa.eu/eurostat/databrowser/view/SBS_SC_OVW/" target="_blank" rel="noopener noreferrer">Eurostat SBS</a> — EU-27 enterprise counts</li>
+            <li><a href="https://sunbay.io/pricing" target="_blank" rel="noopener noreferrer">Sunbay.io pricing page</a> — ARPC derivation</li>
+            <li><a href="https://single-market-economy.ec.europa.eu/smes/challenges-and-resilience/late-payment/eu-payment-observatory/observatory-analysis_en" target="_blank" rel="noopener noreferrer">EU Payment Observatory 2025</a> — late payment severity</li>
+            <li><a href="https://www.intrum.com/insights/publications/epr-2025/" target="_blank" rel="noopener noreferrer">Intrum European Payment Report 2025</a> (n=9,150)</li>
+            <li><a href="https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-western-europe-2025" target="_blank" rel="noopener noreferrer">Atradius Payment Practices Barometer 2025</a> (n=210 Poland)</li>
+            <li><a href="https://big.pl/raporty" target="_blank" rel="noopener noreferrer">BIG InfoMonitor</a> — overdue business debt, mitigation plans</li>
+          </ul>
+        </SectionToggle>
       </div>
     </section>
   )
