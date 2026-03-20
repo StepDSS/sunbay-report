@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Memo: Sunbay.io | S16VC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFDF5;
+      --bg-white: #FFFFFF;
+      --bg-cream: #FFFBED;
+      --bg-purple: #3A2F98;
+      --bg-dark-purple: #251B6D;
+      --bg-black: #000000;
+      --text: #000000;
+      --text-secondary: #626262;
+      --text-dim: #999999;
+      --text-on-dark: #FFFFFF;
+      --orange: #F66731;
+      --purple: #3A2F98;
+      --yellow: #F3B701;
+      --risk: #E84C3D;
+      --green: #2ECC71;
+      --border: #E9E7DF;
+      --border-subtle: #F0EDE5;
+      --shadow: 0 15px 40px rgba(0,0,0,0.05);
+      --shadow-lg: 0 8px 25px rgba(0,0,0,0.12);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --radius-pill: 44px;
+      --nav-width: 250px;
+      --ease: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      font-weight: 400;
+    }
+
+    /* === NAV (timeline style) === */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--nav-width);
+      height: 100vh;
+      background: var(--bg-white);
+      border-right: 1px solid var(--border);
+      padding: 2.5rem 1.25rem;
+      overflow-y: auto;
+      z-index: 100;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    nav::-webkit-scrollbar { width: 0; }
+    nav .nav-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--purple);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 7px 0 7px 0;
+      margin-left: 8px;
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
+      transition: all var(--ease);
+      position: relative;
+    }
+    nav a::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--bg-white);
+      transition: all var(--ease);
+    }
+    nav a:hover { color: var(--text-secondary); }
+    nav a.active {
+      color: var(--purple);
+      border-left-color: var(--orange);
+      font-weight: 500;
+    }
+    nav a.active::before {
+      background: var(--orange);
+      width: 10px;
+      height: 10px;
+      left: -6px;
+      box-shadow: 0 0 0 3px rgba(246,103,49,0.2);
+    }
+    nav a.sub { padding-left: 28px; font-size: 11.5px; opacity: 0.7; }
+    nav a.sub::before { width: 6px; height: 6px; left: -4px; }
+    nav a.sub.active { opacity: 1; }
+    nav a.sub.active::before { width: 8px; height: 8px; left: -5px; }
+
+    /* === MAIN === */
+    main {
+      margin-left: var(--nav-width);
+      max-width: 860px;
+      padding: 4rem 3.5rem 8rem;
+    }
+
+    /* === TYPOGRAPHY === */
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 5rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.01em;
+    }
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.2em;
+      background: var(--orange);
+      margin-right: 12px;
+      vertical-align: text-bottom;
+      border-radius: 2px;
+    }
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--orange);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    p { margin-bottom: 1rem; color: var(--text-secondary); }
+    .subtitle {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .one-liner {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      margin: 0.75rem 0;
+      font-weight: 300;
+    }
+    .deal-terms {
+      display: inline-block;
+      color: var(--bg-black);
+      background: var(--yellow);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      margin: 1rem 0 2rem;
+      letter-spacing: 0.5px;
+    }
+    .verdict {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--risk);
+      margin: 1.5rem 0;
+      letter-spacing: -0.03em;
+    }
+
+    /* === OPINION CARDS === */
+    .opinion-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--purple);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin: 1.5rem 0;
+      box-shadow: var(--shadow);
+    }
+    .opinion-card ul { margin-bottom: 0; }
+    .opinion-card li { color: var(--text); font-weight: 400; }
+    .opinion-card ul > li::before { background: var(--purple); }
+    .opinion-card[style*="risk"] ul > li::before { background: var(--risk); }
+    .opinion-card p { color: var(--text); }
+
+    /* === LISTS === */
+    ul, ol { margin-left: 1.25rem; margin-bottom: 1.25rem; }
+    ul { list-style: none; }
+    li {
+      margin-bottom: 0.6rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      position: relative;
+    }
+    ul > li::before {
+      content: '';
+      position: absolute;
+      left: -1.25rem;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+    }
+    li strong { color: var(--text); }
+
+    /* === TABLES === */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 13px;
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    th {
+      text-align: left;
+      padding: 12px 14px;
+      background: var(--bg-cream);
+      color: var(--text-dim);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+      color: var(--text-secondary);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--bg-cream); }
+
+    /* === FOOTNOTES / DETAILS === */
+    .footnotes {
+      margin-top: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      overflow: hidden;
+    }
+    .footnotes summary {
+      cursor: pointer;
+      color: var(--text-dim);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 12px 16px;
+      background: var(--bg-cream);
+      transition: background var(--ease);
+    }
+    .footnotes summary:hover { background: var(--border-subtle); }
+    .footnotes ul { margin-left: 1rem; }
+    .footnotes li { margin-bottom: 0.5rem; color: var(--text-dim); }
+    details {
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    details summary {
+      padding: 12px 16px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      background: var(--bg-cream);
+      transition: background var(--ease);
+    }
+    details summary:hover { background: var(--border-subtle); }
+    details[open] summary { border-bottom: 1px solid var(--border); }
+    details .detail-content { padding: 1rem 1.25rem; }
+
+    /* === CALCULATOR === */
+    .calc-container {
+      background: var(--bg-purple);
+      border: none;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin: 2rem 0;
+      color: var(--text-on-dark);
+      box-shadow: var(--shadow-lg);
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .calc-input label {
+      display: block;
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .calc-input input[type="range"] {
+      width: 100%;
+      accent-color: var(--yellow);
+      margin-top: 4px;
+    }
+    .calc-input .val {
+      color: var(--yellow);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .calc-outputs {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .calc-out {
+      background: var(--bg-dark-purple);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .calc-out .label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+    .calc-out .value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--yellow);
+      margin-top: 6px;
+    }
+    .calc-out .value.risk { color: #FF6B6B; }
+
+    /* === TOGGLES === */
+    .comp-toggles {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .comp-toggle {
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      background: var(--bg-white);
+      color: var(--text-dim);
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: all var(--ease);
+    }
+    .comp-toggle:hover { border-color: var(--text-dim); color: var(--text-secondary); }
+    .comp-toggle.active {
+      border-color: var(--purple);
+      color: var(--text-on-dark);
+      background: var(--purple);
+    }
+    .tam-toggle {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      background: var(--bg-white);
+    }
+    .tam-btn {
+      padding: 8px 20px;
+      font-size: 12px;
+      font-weight: 500;
+      border: none;
+      background: transparent;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: all var(--ease);
+    }
+    .tam-btn.active {
+      background: var(--yellow);
+      color: var(--bg-black);
+      font-weight: 600;
+    }
+
+    /* === WATERFALL === */
+    .wf-bar-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .wf-bar-label {
+      width: 80px;
+      font-size: 12px;
+      color: var(--text-dim);
+      text-align: right;
+      padding-right: 14px;
+      font-weight: 500;
+    }
+    .wf-bar-track { flex: 1; }
+    .wf-bar {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      padding-left: 14px;
+      border-radius: 6px;
+      transition: width 0.4s ease;
+    }
+    .wf-bar span {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-on-dark);
+    }
+
+    /* === SOURCES === */
+    .sources-list {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.9;
+    }
+    .sources-list a, .footnotes a { color: var(--text-dim); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 2px; }
+    .sources-list a:hover, .footnotes a:hover { color: var(--orange); text-decoration-color: var(--orange); }
+    td a { color: var(--text-secondary); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 2px; }
+    td a:hover { color: var(--orange); text-decoration-color: var(--orange); }
+
+    /* === AUTHOR === */
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .author img {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 20% center;
+      border: 2px solid var(--border);
+    }
+    .author-info {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .author-info .name {
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* === MOBILE === */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      main { margin-left: 0; padding: 2rem 1.25rem; }
+      h1 { font-size: 2rem; }
+      h2 { margin-top: 3rem; }
+      .calc-grid { grid-template-columns: 1fr; }
+      .calc-container { padding: 1.5rem; }
+      table { font-size: 11px; }
+      th, td { padding: 8px 10px; }
+      .verdict { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-title">Sunbay.io Memo</div>
+  <a href="#header">Overview</a>
+  <a href="#recommendation">Recommendation</a>
+  <a href="#arguments">Key Arguments & Risks</a>
+  <a href="#team" class="sub">Team</a>
+  <a href="#product" class="sub">Product</a>
+  <a href="#market" class="sub">Market</a>
+  <a href="#competitive" class="sub">Competitive Landscape</a>
+  <a href="#traction" class="sub">Traction & Benchmarks</a>
+  <a href="#round" class="sub">The Round & Returns</a>
+  <a href="#calculator">Return Calculator</a>
+  <a href="#competitor-comparison">Competitor Comparison</a>
+  <a href="#tam-waterfall">TAM Waterfall</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<main>
+
+<section id="header">
+  <h1>Investment Memo: Sunbay.io</h1>
+  <p class="subtitle">Prepared for S16VC | March 2026</p>
+  <p class="one-liner">B2B accounts receivable collections automation for Polish SMBs</p>
+  <p class="deal-terms">$1.2M raise at $6M post-money valuation</p>
+  <div class="author">
+    <img src="stephan.jpg" alt="Stephan">
+    <div class="author-info">
+      <div class="name">Prepared by Stephan</div>
+      <div>S16VC Analyst Internship Task</div>
+    </div>
+  </div>
+</section>
+
+<section id="recommendation">
+  <h2>A. Top Recommendation</h2>
+  <div class="verdict">PASS</div>
+  <div class="opinion-card">
+  <p>
+    Even though they did find a relevant issue, especially for the Polish market (their main and so far only market), the product itself does not contain any technological know-how, nor do they seem to have any point that will tie clients to them. The product is relatively easily replicable; any tech-savvy user will manage to build the same thing just for their system using APIs in a weekend. Also, the system at this point is pretty much a complicated reminder feature, with good automations. So far, their main differentiator is focus on the Polish market and Poland-specific tooling, but moving down this road with the current direction, they won't be big enough to cover Fund's Risks.
+  </p>
+  </div>
+  <details class="footnotes">
+    <summary>Sources & Footnotes</summary>
+    <div class="detail-content"><ul>
+      <li><strong>No technical moat:</strong> All 6 Polish accounting systems Sunbay integrates with expose public REST APIs rated Low to Moderate integration difficulty. "The integration layer Sunbay has built is technically replicable by any competitor -- there is no proprietary connector advantage." (competitor_addition.md)</li>
+      <li><strong>Product scope:</strong> Core workflow is "connect accounting system -> define collection rules and templates -> system sends reminders on schedule -> dashboard tracks status." Confirmed shipped features are limited to reminder sequences, workflows, tracking, interest notes, and dashboard. (product_analysis.md)</li>
+      <li><strong>Polish-only advantage:</strong> No international player (<a href="https://www.chaserhq.com/" target="_blank">Chaser</a>, <a href="https://upflow.io" target="_blank">Upflow</a>, <a href="https://www.gaviti.com" target="_blank">Gaviti</a>, <a href="https://www.tesorio.com" target="_blank">Tesorio</a>) has any Polish integrations. (direct_competitor_landscape.md, Part C)</li>
+      <li><strong>Fund math:</strong> $1.2M check on $70M fund (<a href="https://www.eu.vc/p/the-path-to-oversubscribed-the-learnings" target="_blank">eu.vc confirmed</a>) = ~1.7% of Fund II capital. At 20% ownership, required exit for 1x fund return = $350M (pre-dilution). (s16vc_portfolio_deep_dive.md)</li>
+      <li><strong>Valuation context:</strong> $6M post-money on ~$18K ARR = ~333x revenue multiple. Comp: Upflow raised $2.76M seed at an estimated ~$742K revenue with 18 employees and <a href="https://www.ycombinator.com/companies/upflow" target="_blank">YC W20</a> backing. (traction_benchmarking.md)</li>
+    </ul><p style="margin-top:0.75rem;margin-bottom:0;"><a href="#sources" style="color:var(--orange);font-size:11px;text-transform:uppercase;letter-spacing:1px;text-decoration:none;">View all sources</a></p></div>
+  </details>
+</section>
+
+<section id="arguments">
+  <h2>B. Key Arguments & Risks</h2>
+  <h3>Why You Should Invest</h3>
+  <div class="opinion-card">
+  <ul>
+    <li>The product is specific to the market, tailored to the existing ecosystem, where almost no competitor has done the same implementation of Poland-specific tools.</li>
+    <li>The problem they focus on is highly relevant in their core market and in other EU countries.</li>
+    <li>The product is focused on a certain, narrow problem and does not try to solve everything at once.</li>
+  </ul>
+  <h4>Upside Scenario</h4>
+  <p>They "automate automation" and find a way to connect and maintain the market-specific tools with almost no cost of maintenance. That will let them address tools that are not integrated into their competitors, creating a gap they can fill. And move from the Polish market to the EU with a small to no upcost. (Moving from 50-60M TAM to 1.3-1.4B TAM, giving them the potential to become a unicorn.)</p>
+  </div>
+  <details class="footnotes">
+    <summary>Sources -- Why Invest</summary>
+    <div class="detail-content"><ul>
+      <li><strong>Polish integrations:</strong> Sunbay integrates with Fakturownia, wFirma, inFakt, Systim, Saldeo Smart, Subiekt123. <a href="https://www.chaserhq.com/" target="_blank">Chaser</a>, <a href="https://upflow.io" target="_blank">Upflow</a>, Gaviti, Tesorio show zero Polish integrations. All 6 Polish tools have public REST APIs rated Low to Moderate difficulty. (competitor_addition.md)</li>
+      <li><strong>Late payment data:</strong> Poland 72% affected (<a href="https://single-market-economy.ec.europa.eu/smes/challenges-and-resilience/late-payment/eu-payment-observatory/observatory-analysis_en" target="_blank">EU Payment Observatory 2025</a>, highest in EU). Avg B2B payment period 60+ days (<a href="https://www.intrum.com/insights/publications/epr-2025/" target="_blank">Intrum EPR 2025</a>, n=9,150). 38% of B2B invoices overdue (<a href="https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-western-europe-2025" target="_blank">Atradius 2025</a>, n=210). EU-wide: 52% report late payment problems (2024), up from 42% in 2021.</li>
+      <li><strong>Focused product:</strong> Confirmed shipped = reminder sequences, workflows, tracking, interest notes, dashboard. Team of 3 + 1 student, $60K raised. Appropriate scope for stage. (product_analysis.md)</li>
+      <li><strong>TAM upside:</strong> Poland TAM = EUR48.7-62.9M (<a href="https://bdl.stat.gov.pl/BDL/start" target="_blank">GUS 2024</a> enterprise counts). EU-27 TAM = EUR1.23-1.48B (<a href="https://ec.europa.eu/eurostat/databrowser/view/SBS_SC_OVW/" target="_blank">Eurostat SBS</a>). (market_sizing_PL.md, market_sizing_EU.md)</li>
+    </ul></div>
+  </details>
+
+  <h3>Key Risks</h3>
+  <div class="opinion-card" style="border-left-color: var(--risk);">
+  <ul>
+    <li>Scaling outside the current use case will either put them in direct competition with well-established solutions (EU expansion) or at risk of legal liability for AI agents. GDPR compliance is unclear.</li>
+    <li>The team has experience in their jobs, but they are covering responsibilities previously out of scope for them.</li>
+    <li>The product can be replicated relatively easily, especially if the user has an existing CRM.</li>
+    <li>The differentiating point (market-specific tools integration) is shallow -- the tools have APIs, so the barrier to entry for competition is low.</li>
+    <li>The unit economics and other metrics are unclear.</li>
+  </ul>
+  <h4>Downside Scenario</h4>
+  <p>Chaser builds an MCP integration platform where users connect their existing accounting software, CRM and banking with zero friction, resulting in a more complete product for $200 instead of EUR120. This makes Sunbay's product obsolete.</p>
+  </div>
+  <details class="footnotes">
+    <summary>Sources -- Risks</summary>
+    <div class="detail-content"><ul>
+      <li><strong>Funded competitors:</strong> <a href="https://app.dealroom.co/companies/chaser_1" target="_blank">Chaser</a> ($4.79M raised, <a href="https://www.chaserhq.com/" target="_blank">10K+ users</a>), Upflow (<a href="https://www.cbinsights.com/company/upflow-1/financials" target="_blank">$22.9M</a>), Gaviti (<a href="https://www.finsmes.com/2022/04/gaviti-raises-9m-in-series-a-funding.html" target="_blank">$11.5M</a>), Tesorio ($35.5M). Multi-year head starts.</li>
+      <li><strong>AI regulatory risk:</strong> <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank">EU AI Act</a> (2024/1689) high-risk classification for legal-adjacent AI. <a href="https://www.dudkowiak.com/contract-law-in-poland/" target="_blank">Polish verbal contracts are legally binding</a>. Germany requires <a href="https://www.cloudtalk.io/blog/is-call-recording-legal/" target="_blank">two-party consent</a> (s201 StGB). <a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank">Stanford HAI</a>: legal AI hallucinate in 1/6+ queries.</li>
+      <li><strong>Team gaps:</strong> CEO (<a href="https://www.linkedin.com/in/philipsz" target="_blank">Filip</a>): zero GTM titles in 9 years. COO/CRO (<a href="https://www.linkedin.com/in/dawiddzierzynski" target="_blank">Dawid</a>): finance ops background, not revenue. CTO (<a href="https://www.linkedin.com/in/cabalanikodem" target="_blank">Nikodem</a>): no management experience. All first-time founders.</li>
+      <li><strong>Replicability:</strong> All Polish accounting systems have public REST APIs rated Low to Moderate difficulty. "The barrier is knowing which Polish systems to integrate with and doing the work. This is an execution advantage, not a technical moat." (competitor_addition.md)</li>
+      <li><strong>Missing metrics:</strong> Current MRR, MoM growth, churn, NRR, CAC, payback period, pipeline, ACV distribution -- none provided. (traction_benchmarking.md)</li>
+      <li><strong>Downside comp:</strong> <a href="https://www.chaserhq.com/chaser-pricing" target="_blank">Chaser</a> already has 15+ integrations, payment portal, auto-calls, credit checks, AI payer ratings at <a href="https://www.chaserhq.com/chaser-pricing" target="_blank">$200/mo</a>. (direct_competitor_landscape.md)</li>
+    </ul><p style="margin-top:0.75rem;margin-bottom:0;"><a href="#sources" style="color:var(--orange);font-size:11px;text-transform:uppercase;letter-spacing:1px;text-decoration:none;">View all sources</a></p></div>
+  </details>
+</section>
+
+<section id="team">
+  <h2>C1. Team</h2>
+  <div class="opinion-card">
+  <ul>
+    <li>The CEO lacks strategic experience; the CRO (ex-COO) has a background in financial operations, not sales/revenue. CTO has no management experience. Otherwise, responsibilities barely overlap -- potential for a highly effective team.</li>
+    <li>All three founders are now full-time. Major green flag.</li>
+    <li>All founders either worked or studied together -- they know how to work as a team.</li>
+    <li>Poland's network is strong. All 10 clients are Polish. Angel investors: Szymon Brodziak (S16VC Head of Investment Analytics, personal) and Sebastian Bobrowski (inFakt co-founder).</li>
+  </ul>
+  </div>
+  <h4>Team Overview</h4>
+  <table>
+    <thead><tr><th>Name</th><th>Role</th><th>Background</th><th>Gap</th></tr></thead>
+    <tbody>
+      <tr><td>Filip Szczecinski</td><td>CEO</td><td>~9 yrs ops (HCM Deck, CallPage, Plane YC W17)</td><td>Zero sales/GTM titles</td></tr>
+      <tr><td>Dawid Dzierzynski</td><td>COO/CRO</td><td>Finance Dir at Droppe, Biz Ops at HCM Deck</td><td>Title discrepancy. Finance ops, not revenue.</td></tr>
+      <tr><td>Nikodem Cabala</td><td>CTO</td><td>~5 yrs .NET (mBank/BLIK, Metro Bank)</td><td>No CTO/lead exp. Solo engineer.</td></tr>
+      <tr><td>Kamil Jalowiec</td><td>GTM Engineer</td><td>University student, ~1yr marketing internships</td><td>Junior. Entire sales/marketing function.</td></tr>
+    </tbody>
+  </table>
+  <details class="footnotes">
+    <summary>Sources & Footnotes -- Team</summary>
+    <div class="detail-content"><ul>
+      <li>LinkedIn profiles: <a href="https://www.linkedin.com/in/philipsz" target="_blank">Filip Szczecinski</a>, <a href="https://www.linkedin.com/in/dawiddzierzynski" target="_blank">Dawid Dzierzynski</a>, <a href="https://www.linkedin.com/in/cabalanikodem" target="_blank">Nikodem Cabala</a>, <a href="https://www.linkedin.com/in/kamil-jalowiec" target="_blank">Kamil Jalowiec</a>. Accessed March 2026.</li>
+      <li>CEO title history: 9 years across HCM Deck, CallPage, Plane (YC W17). All titles are operations/project management. Zero sales, GTM, or revenue titles in career history.</li>
+      <li>COO/CRO title discrepancy: LinkedIn profile says "CRO," pitch deck says "COO." Background is finance operations (Finance Director at Droppe, Business Operations at HCM Deck), not revenue generation.</li>
+      <li>CTO background: ~5 years as IC .NET engineer at mBank/BLIK and Metro Bank. No prior tech lead, staff engineer, or architecture ownership experience.</li>
+      <li>Filip and Dawid overlapped at HCM Deck (~18 months). Dawid and Nikodem attended UEK Krakow (Uniwersytet Ekonomiczny w Krakowie).</li>
+      <li>All ~10 clients are Polish SMBs, mostly Krakow-based. Both angel investors are from the same ecosystem.</li>
+      <li>Source: Sunbay Pitch Deck, team_analysis.md</li>
+    </ul></div>
+  </details>
+</section>
+
+<section id="product">
+  <h2>C2. Product</h2>
+  <div class="opinion-card">
+  <ul>
+    <li>The product automates a very narrow part of the user flow: invoice payment reminders. No complete payment flow (issuance, collection, analytics). Integrated with ICP's tools in core market.</li>
+    <li>Pitch video claims "better accuracy" for payment monitoring. No data supports this.</li>
+    <li>Two scaling paths in the deck: geographic expansion (risk of losing local edge, competing with larger players) and AI features (legal/regulatory risk: EU AI Act, GDPR, binding verbal contracts in Poland, two-party consent in Germany).</li>
+  </ul>
+  </div>
+  <h4>Confirmed Shipped Features</h4>
+  <table>
+    <thead><tr><th>Feature</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Automated email/SMS reminders</td><td>Shipped</td></tr>
+      <tr><td>Configurable collection workflows</td><td>Shipped</td></tr>
+      <tr><td>Open/read tracking</td><td>Shipped</td></tr>
+      <tr><td>Interest notes & late-payment docs</td><td>Shipped</td></tr>
+      <tr><td>Dashboard</td><td>Shipped</td></tr>
+      <tr><td>8 accounting integrations (6 PL + Xero + QB)</td><td>Shipped</td></tr>
+      <tr><td>AI voice agent (ElevenLabs)</td><td style="color:var(--risk)">Launching Soon</td></tr>
+      <tr><td>AI legal document generation</td><td style="color:var(--risk)">Under Development</td></tr>
+      <tr><td>CRM integrations (HubSpot, Pipedrive)</td><td style="color:var(--text-dim)">Video only</td></tr>
+      <tr><td>Bank integrations (Revolut, mBank)</td><td style="color:var(--text-dim)">Video only</td></tr>
+    </tbody>
+  </table>
+  <h4>Pricing</h4>
+  <table>
+    <thead><tr><th>Plan</th><th>Price</th><th>Scope</th></tr></thead>
+    <tbody>
+      <tr><td>Basic</td><td>EUR100/mo</td><td>1 flow, 1 system, single language, unlimited users</td></tr>
+      <tr><td>Standard</td><td>EUR120/mo</td><td>Multiple flows/systems/languages</td></tr>
+      <tr><td>Custom</td><td>Contact</td><td>3000+ invoices, premium support</td></tr>
+      <tr><td>SMS add-on</td><td>+EUR20/mo</td><td>100 SMS credits</td></tr>
+    </tbody>
+  </table>
+  <details class="footnotes">
+    <summary>Sources & Footnotes -- Product</summary>
+    <div class="detail-content"><ul>
+      <li>Confirmed features sourced from sunbay.io website (accessed March 2026) and pitch deck. Three sources (website, deck, pitch video) describe materially different products.</li>
+      <li>Pitch video shows CRM integrations (HubSpot, Pipedrive, Docusign), bank integrations (HSBC, Revolut, Alior, mBank), payment matching, and invoicing module -- none appear on the website.</li>
+      <li>AI voice agent planned via <a href="https://elevenlabs.io/blog/how-do-you-optimize-latency-for-conversational-ai" target="_blank">ElevenLabs</a> (conversational AI). Latency analysis from <a href="https://hamming.ai/resources/voice-ai-latency-whats-fast-whats-slow-how-to-fix-it" target="_blank">Hamming AI</a> (4M+ calls analyzed).</li>
+      <li>EU AI Act: <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank">Regulation (EU) 2024/1689</a>, Annex III lists AI systems in legal/employment contexts as high-risk. <a href="https://www.europarl.europa.eu/topics/en/article/20230601STO93804/eu-ai-act-first-regulation-on-artificial-intelligence" target="_blank">European Parliament summary</a>.</li>
+      <li>Polish verbal contracts: <a href="https://www.dudkowiak.com/contract-law-in-poland/" target="_blank">Dudkowiak &amp; Putyra</a> confirms verbal contracts are legally binding under Polish civil law. Germany two-party consent: <a href="https://www.cloudtalk.io/blog/is-call-recording-legal/" target="_blank">CloudTalk analysis</a> citing s201 StGB.</li>
+      <li>AI hallucination in legal contexts: <a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank">Stanford HAI study</a> -- legal AI hallucinate in 1/6+ benchmarking queries (2024).</li>
+      <li>Pricing from sunbay.io pricing page, accessed March 2026. At ACV ~EUR1,300/yr, reaching EUR1M ARR requires ~770 paying customers.</li>
+      <li>Source: product_analysis.md, sunbay_website_snapshot.md</li>
+    </ul></div>
+  </details>
+</section>
+
+<section id="market">
+  <h2>C3. Market</h2>
+  <div class="opinion-card">
+  <ul>
+    <li>Poland: late payment is huge (72% affected, 60+ day avg, 38% overdue). TAM = EUR50M, ~37K companies. KSeF mandatory digital invoicing from April 2026.</li>
+    <li>EU: EUR1.3B TAM, 1.82M companies. 52% report late payment problems. 47.7% of SMEs use no ERP/CRM/BI at all.</li>
+    <li>Germany + France combined: ~EUR430M TAM, ~326K companies.</li>
+  </ul>
+  </div>
+  <h4>TAM Summary</h4>
+  <div id="tam-section">
+    <div class="tam-toggle">
+      <button class="tam-btn active" id="tam-cons-btn">Conservative</button>
+      <button class="tam-btn" id="tam-ext-btn">Extended</button>
+    </div>
+    <table><thead><tr><th>Geography</th><th>TAM</th><th>Enterprise Count</th><th>ARPC</th></tr></thead>
+      <tbody id="tam-body"></tbody>
+    </table>
+    <p style="font-size:12px;color:var(--text-dim);">Assumptions: ARPC = EUR1,320/yr; 10-249 employee firms; B2B sectors only; no adoption rate applied.</p>
+  </div>
+  <details class="footnotes">
+    <summary>Methodology -- TAM Calculation</summary>
+    <div class="detail-content"><ul>
+      <li><strong>Enterprise scope:</strong> 10-249 employees (NACE non-financial economy). Micro (0-9) excluded: too small for dedicated AR tooling. Large (250+) excluded: served by enterprise solutions (Tesorio, HighRadius).</li>
+      <li><strong>ARPC calculation:</strong> Midpoint of Sunbay Basic (EUR1,200/yr) and Standard (EUR1,440/yr) = EUR1,320/yr. Custom tier ("contact us") excluded. Blended ARPC depends on customer mix and is not validated against actual revenue.</li>
+      <li><strong>Conservative sectors:</strong> B+C+D+E (Industry), F (Construction), H (Transport), M (Professional/scientific/tech), N (Admin &amp; support) -- all have primary B2B invoicing models with 30-60 day credit terms. No B2B/B2C split assumption needed.</li>
+      <li><strong>Extended additions:</strong> G46 Wholesale (100% B2B by NACE definition), G45 Motor vehicles (50% B2B -- own estimate), J Info &amp; communication (75% B2B -- driven by J62 IT services), L Real estate (50% B2B -- commercial leasing). G47 Retail excluded (B2C).</li>
+      <li><strong>Data quality ratings:</strong> [A] = official government statistics (GUS 2024, Destatis, Eurostat). [B] = survey data (EU Payment Observatory, Intrum, Atradius). [C] = market reports. [D] = own estimates. Conservative TAM uses all [A]-quality sector counts. Extended TAM introduces [B] (Eurostat G-split proportions) and [D] (J/L B2B ratios).</li>
+      <li><strong>Key caveat:</strong> No adoption rate applied. This is total addressable market, not serviceable. A realistic SAM would filter for firms with 50+ invoices/month or those reporting late payment issues (72% per EU Payment Observatory). The 10-249 segment is also shrinking (-0.6% YoY); no growth multiplier applied.</li>
+      <li><strong>Sources:</strong> <a href="https://bdl.stat.gov.pl/BDL/start" target="_blank">GUS Bank Danych Lokalnych</a> (enterprise counts), <a href="https://ec.europa.eu/eurostat/databrowser/view/SBS_SC_OVW/" target="_blank">Eurostat SBS</a> (G-division proportions), <a href="https://sunbay.io/pricing" target="_blank">Sunbay.io pricing page</a> (ARPC basis).</li>
+    </ul></div>
+  </details>
+
+  <h4>Late Payment Severity (Poland)</h4>
+  <table>
+    <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Companies affected by late payments</td><td style="color:var(--risk)">72% (highest in EU)</td><td><a href="https://single-market-economy.ec.europa.eu/smes/challenges-and-resilience/late-payment/eu-payment-observatory/observatory-analysis_en" target="_blank">EU Payment Observatory 2025</a></td></tr>
+      <tr><td>Avg B2B payment period</td><td>60+ days</td><td><a href="https://www.intrum.com/insights/publications/epr-2025/" target="_blank">Intrum EPR 2025</a></td></tr>
+      <tr><td>B2B invoices overdue</td><td>38%</td><td><a href="https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-western-europe-2025" target="_blank">Atradius 2025</a> (n=210)</td></tr>
+      <tr><td>Total overdue business debt</td><td>>45 bn PLN</td><td><a href="https://big.pl/raporty" target="_blank">BIG InfoMonitor</a> end 2025</td></tr>
+      <tr><td>Firms planning mitigation in 2026</td><td>76%</td><td><a href="https://big.pl/raporty" target="_blank">BIG InfoMonitor</a> (n=500)</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Integration Landscape</h4>
+  <table>
+    <thead><tr><th>System</th><th>API Type</th><th>Difficulty</th><th>Sunbay?</th></tr></thead>
+    <tbody>
+      <tr><td>Fakturownia</td><td>REST JSON/XML</td><td>Low</td><td>Yes</td></tr>
+      <tr><td>Systim</td><td>JSON POST/GET</td><td>Low</td><td>Yes</td></tr>
+      <tr><td>wFirma</td><td>REST JSON</td><td>Low-Mod</td><td>Yes</td></tr>
+      <tr><td>Saldeo Smart</td><td>REST XML</td><td>Low-Mod</td><td>Yes</td></tr>
+      <tr><td>inFakt</td><td>REST JSON v3</td><td>Low</td><td>Yes</td></tr>
+      <tr><td>Subiekt123</td><td>REST via InsERT</td><td>Moderate</td><td>Yes</td></tr>
+      <tr><td>DATEV (DE)</td><td>Batch CSV/XML</td><td style="color:var(--risk)">High</td><td>No</td></tr>
+      <tr><td>sevDesk (DE)</td><td>REST/JSON</td><td>Moderate</td><td>No</td></tr>
+      <tr><td>Lexware (DE)</td><td>REST/JSON</td><td>Moderate</td><td>No</td></tr>
+      <tr><td>Pennylane (FR)</td><td>REST/JSON v2</td><td>Moderate</td><td>No</td></tr>
+      <tr><td>Sage 100 (FR)</td><td>Custom</td><td style="color:var(--risk)">High</td><td>No</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="competitive">
+  <h2>C4. Competitive Landscape</h2>
+  <div class="opinion-card">
+  <ul>
+    <li>Polish competition: Vindicat.pl (20K users, Fintech of Year 2023) = debt recovery. Comarch Optima (60K users) = ERP module. wFirma = basic reminders at 49 PLN/mo.</li>
+    <li>International: Chaser is closest -- almost every Sunbay feature plus much more, for only 2x the price. All raised $4.8-35.5M.</li>
+    <li>Indirect: debt recovery agencies (PLN 3.7B industry, post-default) and automation tools (Zapier/Make, require technical skill).</li>
+    <li>Sunbay's differentiator: Polish integration. Shallow -- APIs are public, barrier is low.</li>
+  </ul>
+  </div>
+
+  <h4 id="competitor-comparison">Competitor Comparison (International)</h4>
+  <div class="comp-toggles" id="comp-toggles"></div>
+  <div style="overflow-x:auto;">
+    <table id="comp-table">
+      <thead><tr id="comp-header"></tr></thead>
+      <tbody id="comp-body"></tbody>
+    </table>
+  </div>
+
+  <h4>Polish Local Competitors</h4>
+  <table>
+    <thead><tr><th></th><th>Sunbay</th><th>Vindicat.pl</th><th>Comarch Optima</th><th>wFirma</th></tr></thead>
+    <tbody>
+      <tr><td>Core Identity</td><td>AR automation</td><td>Debt recovery</td><td>ERP module</td><td>Accounting platform</td></tr>
+      <tr><td>AR Lifecycle</td><td>Proactive</td><td>Reactive</td><td>Preventive</td><td>Basic</td></tr>
+      <tr><td>Users</td><td>~10</td><td>20K+</td><td>60K+</td><td>N/A</td></tr>
+      <tr><td>Entry Price</td><td>EUR100/mo</td><td>169 PLN (~EUR39)</td><td>~64 PLN (Comarch only)</td><td>49 PLN (~EUR11)</td></tr>
+      <tr><td>Multi-step Workflows</td><td style="color:var(--accent)">Yes</td><td style="color:var(--accent)">Yes</td><td style="color:var(--accent)">Yes</td><td style="color:var(--risk)">No</td></tr>
+    </tbody>
+  </table>
+  <details class="footnotes">
+    <summary>Methodology -- Competitor Data</summary>
+    <div class="detail-content"><ul>
+      <li><strong>Revenue estimates are third-party/algorithmic, not verified.</strong> Upflow: $4.1M from <a href="https://getlatka.com/companies/upflow" target="_blank">Getlatka</a> (algorithm-generated). Chaser: ranges from &lt;$1M (<a href="https://www.owler.com/company/chaserhq" target="_blank">Owler</a>) to $5.2M (<a href="https://growjo.com/company/Chaser" target="_blank">Growjo</a>). Gaviti: $3.8-6.6M from <a href="https://getlatka.com/companies/gaviti" target="_blank">Getlatka</a>. Tesorio: ~$11M from LeadIQ. These sources use different methodologies and are individually unreliable.</li>
+      <li><strong>Employee counts</strong> from <a href="https://tracxn.com/d/companies/upflow/" target="_blank">Tracxn</a>, <a href="https://pitchbook.com/profiles/company/104545-63" target="_blank">PitchBook</a>, and LinkedIn (snapshot, not confirmed). Sources frequently disagree by 10-20%.</li>
+      <li><strong>Feature matrix</strong> compiled from direct observation of competitor websites: <a href="https://www.chaserhq.com/" target="_blank">chaserhq.com</a>, <a href="https://upflow.io" target="_blank">upflow.io</a>, <a href="https://www.gaviti.com" target="_blank">gaviti.com</a>, <a href="https://www.tesorio.com" target="_blank">tesorio.com</a>, <a href="https://vindicat.pl" target="_blank">vindicat.pl</a>. Accessed March 2026.</li>
+      <li><strong>Funding data</strong> from <a href="https://www.crunchbase.com" target="_blank">Crunchbase</a>, PitchBook, <a href="https://app.dealroom.co/companies/chaser_1" target="_blank">Dealroom</a>. Sources report different totals for the same company (e.g., Chaser: $4M on CB Insights vs $4.79M on Dealroom vs $6.17M on PitchBook).</li>
+      <li><strong>Chaser UK filings:</strong> Files "total exemption full accounts" at <a href="https://find-and-update.company-information.service.gov.uk/company/08517987/filing-history" target="_blank">UK Companies House</a> -- does not disclose revenue. No new funding since 2019.</li>
+      <li>Source: direct_competitor_landscape.md, competitor_addition.md, traction_benchmarking.md</li>
+    </ul></div>
+  </details>
+</section>
+
+<section id="traction">
+  <h2>C5. Traction & Benchmarking</h2>
+  <div class="opinion-card">
+  <ul>
+    <li>April 2025 deck: $1.2-1.5K MRR + $3K consulting. Now ~10 paying customers = ~$2.4-3K MRR. Not enough to justify $6M post-money. No data on CAC or lifetime. All clients from founder network.</li>
+    <li>Typical seed ARR: $150-500K. Sunbay: ~$30K. Upflow had ~$742K revenue and 18 employees at their $2.76M seed in 2019.</li>
+    <li>Chaser: 12 years, $5-6M funding, 33 employees, revenue estimated under $5M.</li>
+  </ul>
+  </div>
+  <h4>Traction Benchmarking</h4>
+  <table>
+    <thead><tr><th>Metric</th><th>Sunbay (est.)</th><th>Seed Benchmarks</th></tr></thead>
+    <tbody>
+      <tr><td>MRR</td><td>~$2.4-3K</td><td>$20-50K+</td></tr>
+      <tr><td>ARR</td><td>~$29-36K</td><td>$150-500K</td></tr>
+      <tr><td>Paying Customers</td><td>~10</td><td>10-50+</td></tr>
+      <tr><td>ACV</td><td>~EUR1,300/yr</td><td>$5-25K+</td></tr>
+      <tr><td>Valuation Multiple</td><td style="color:var(--risk)">~333x rev</td><td>20-50x</td></tr>
+    </tbody>
+  </table>
+  <details class="footnotes">
+    <summary>Methodology -- Traction Estimates</summary>
+    <div class="detail-content"><ul>
+      <li><strong>MRR estimation:</strong> Pitch deck (April 2025) states $1.2-1.5K MRR from 5-6 paying clients. Website (March 2026) shows ~10 client logos. Assuming ~2x clients at stable ACV (EUR100-120/mo) = ~$2.4-3K MRR, ~$29-36K ARR.</li>
+      <li><strong>Caveats on client count:</strong> Not all logos may be paying customers. Two are nonprofits (PAGA, Kuek). Some could be pilots, free trials, or consulting-only relationships. No data on tier mix (Basic vs Standard vs Custom).</li>
+      <li><strong>Valuation multiple:</strong> $6M post-money / ~$18K ARR (April 2025 figure, annualized) = ~333x revenue. Not unusual for pre-seed/angel but entirely forward-looking.</li>
+      <li><strong>Benchmark sources:</strong> <a href="https://www.flowjam.com/blog/seed-round-valuation-2025-complete-founders-guide" target="_blank">Flowjam seed guide 2025</a> ($150-500K ARR for top-tier seed raises), <a href="https://tomtunguz.com/mrr-growth/" target="_blank">Tom Tunguz</a> (15-20% MoM growth target), <a href="https://www.vitally.io/post/saas-churn-benchmarks" target="_blank">Recurly 2025 Churn Report</a> (3.5% median B2B SaaS churn), <a href="https://www.re-cap.com/benchmarking-tool" target="_blank">re-cap benchmarking tool</a> (early-stage ARR growth, NRR, CAC).</li>
+      <li><strong>Comp revenue estimates:</strong> Upflow revenue ($4.1M) from <a href="https://getlatka.com/companies/upflow" target="_blank">Getlatka</a> -- algorithm-generated, not confirmed. Chaser revenue is not disclosed (UK Companies House total exemption filings). Third-party estimates range from &lt;$1M to $5.2M.</li>
+      <li>Source: traction_benchmarking.md, Sunbay Pitch Deck</li>
+    </ul></div>
+  </details>
+</section>
+
+<section id="round">
+  <h2>C6. The Round & Returns</h2>
+  <div class="opinion-card">
+  <ul>
+    <li>Fund is $70M, avg check ~$1-1.4M. The $1.2M round is within terms, but the product does not give a perception of 59x growth potential needed to cover the fund.</li>
+    <li>$1.2M for 20% is too much without proof-of-traction. Requires growth beyond a narrow market and likely a vision change.</li>
+    <li>The angel round ($60K) from Brodziak and Bobrowski is what they need now -- means to find PMF.</li>
+    <li>Successful if they make foundations stronger (less replicable product) or find a market deep enough for 60x growth.</li>
+  </ul>
+  </div>
+  <h4>Fund Math</h4>
+  <table>
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>S16VC Fund II</td><td>$70M</td></tr>
+      <tr><td>Check Size</td><td>$1.2M (1.7% of fund)</td></tr>
+      <tr><td>Ownership at Entry</td><td>20%</td></tr>
+      <tr><td>Required Exit for 1x Fund</td><td style="color:var(--risk)">$350M</td></tr>
+      <tr><td>Required Exit for 3x Fund</td><td style="color:var(--risk)">$1.05B</td></tr>
+      <tr><td>Poland-only TAM</td><td>EUR49-63M</td></tr>
+      <tr><td>10% Market Capture (PL)</td><td>EUR5-6M rev = ~$30-40M valuation</td></tr>
+    </tbody>
+  </table>
+  <details class="footnotes">
+    <summary>Methodology -- Fund Return Math</summary>
+    <div class="detail-content"><ul>
+      <li><strong>Ownership:</strong> $1.2M / $6M post-money = 20% ownership at entry. With 50% dilution through subsequent rounds: 20% x 0.5 = 10% at exit.</li>
+      <li><strong>1x fund return:</strong> $70M fund / 10% ownership at exit = $700M required exit. Without dilution: $70M / 20% = $350M. The table shows the no-dilution figure; the interactive calculator above models dilution.</li>
+      <li><strong>Market ceiling:</strong> Poland TAM EUR49-63M. At 10% market capture (aggressive for seed-stage), revenue = EUR5-6M. At 5-7x revenue multiple, valuation = ~$30-40M. This is ~10x below the $350M needed for 1x fund return without dilution.</li>
+      <li><strong>Check size context:</strong> S16VC Fund II ($70M) estimated initial checks at $1-3M. $1.2M is within range but at the lower end. At 20% ownership, S16VC would be lead or sole institutional investor.</li>
+      <li><strong>Fund data sources:</strong> <a href="https://www.eu.vc/p/the-path-to-oversubscribed-the-learnings" target="_blank">eu.vc interview</a> (April 2025, fund size confirmation), <a href="https://pitchbook.com/profiles/fund/22388-32F" target="_blank">PitchBook Fund II</a>, <a href="https://www.cbinsights.com/investor/s16vc" target="_blank">CB Insights</a>, <a href="https://tracxn.com/d/venture-capital/s16vc/" target="_blank">Tracxn</a> (Jan 2026).</li>
+      <li><strong>Data limitation:</strong> Individual check sizes are not publicly disclosed. Round sizes are available, but S16VC's specific allocation within rounds is behind PitchBook's paywall. Estimates are triangulated from round sizes, co-investor counts, and fund structure.</li>
+      <li>Source: s16vc_portfolio_deep_dive.md</li>
+    </ul></div>
+  </details>
+</section>
+
+<section id="calculator">
+  <h2>D. Return Sensitivity Model</h2>
+  <div class="calc-container">
+    <div class="calc-grid">
+      <div class="calc-input">
+        <label>Check Size</label>
+        <span class="val" id="v-check">$1.2M</span>
+        <input type="range" id="r-check" min="100000" max="2000000" step="50000" value="1200000">
+      </div>
+      <div class="calc-input">
+        <label>Post-Money Valuation</label>
+        <span class="val" id="v-postmoney">$6.0M</span>
+        <input type="range" id="r-postmoney" min="3000000" max="15000000" step="500000" value="6000000">
+      </div>
+      <div class="calc-input">
+        <label>Fund Size</label>
+        <span class="val" id="v-fund">$70M</span>
+        <input type="range" id="r-fund" min="50000000" max="100000000" step="5000000" value="70000000">
+      </div>
+      <div class="calc-input">
+        <label>Dilution Through Future Rounds</label>
+        <span class="val" id="v-dilution">50%</span>
+        <input type="range" id="r-dilution" min="0" max="80" step="5" value="50">
+      </div>
+      <div class="calc-input" style="grid-column: 1 / -1;">
+        <label>Exit Valuation (log scale)</label>
+        <span class="val" id="v-exit">$100M</span>
+        <input type="range" id="r-exit" min="7" max="9.3" step="0.01" value="8">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-dim);margin-top:2px;">
+          <span>$10M</span><span>$100M</span><span>$1B</span><span>$2B</span>
+        </div>
+      </div>
+    </div>
+    <div class="calc-outputs">
+      <div class="calc-out"><div class="label">Ownership at Entry</div><div class="value" id="o-ownership">20.0%</div></div>
+      <div class="calc-out"><div class="label">Ownership at Exit</div><div class="value" id="o-ownexit">10.0%</div></div>
+      <div class="calc-out"><div class="label">Gross Return to Fund</div><div class="value" id="o-gross">$10.0M</div></div>
+      <div class="calc-out"><div class="label">Return Multiple</div><div class="value" id="o-multiple">8.3x</div></div>
+      <div class="calc-out"><div class="label">Fund Return Contribution</div><div class="value" id="o-fundret">0.14x (14%)</div></div>
+      <div class="calc-out"><div class="label">Required Exit for 1x Fund</div><div class="value risk" id="o-req1x">$350M</div></div>
+      <div class="calc-out"><div class="label">Required Exit for 3x Fund</div><div class="value risk" id="o-req3x">$1.05B</div></div>
+      <div class="calc-out"><div class="label">Required Exit for 10x Fund</div><div class="value risk" id="o-req10x">$3.5B</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="tam-waterfall">
+  <h2>TAM Waterfall</h2>
+  <div class="tam-toggle">
+    <button class="tam-btn active" id="wf-cons">Conservative</button>
+    <button class="tam-btn" id="wf-ext">Extended</button>
+  </div>
+  <div id="waterfall-chart"></div>
+</section>
+
+<section id="sources">
+  <h2>Sources</h2>
+  <p style="color:var(--text-dim);font-size:13px;margin-bottom:1rem;">218 unique sources across all research files. Grouped by section.</p>
+
+  <details>
+    <summary>Market Sizing -- Poland (14 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li>GUS, "Non-financial enterprises by kind and place of economic activity in 2024," October 2025 [XLSX] -- <a href="https://bdl.stat.gov.pl/BDL/start" target="_blank">GUS Bank Danych Lokalnych</a></li>
+      <li>GUS, "Aneks tabelaryczny -- Dzialalnosc przedsiebiorstw niefinansowych w 2023 r." [XLSX]</li>
+      <li>Eurostat <a href="https://ec.europa.eu/eurostat/databrowser/view/SBS_SC_OVW/" target="_blank">sbs_sc_ovw</a> -- Enterprise statistics by size class and NACE Rev. 2 activity, Poland, G45/G46/G47, 2021-2024. Extracted 2026-03-20</li>
+      <li>Eurostat isoc_eb_ai -- Artificial intelligence by size class of enterprise, Poland, 2021-2025. Extracted 2026-03-20</li>
+      <li>Eurostat isoc_cicce_use -- Cloud computing services by size class of enterprise, Poland, 2014-2025. Extracted 2026-03-20</li>
+      <li>Eurostat isoc_eb_iip -- Integration of internal processes (ERP, CRM, BI) by size class of enterprise, Poland, 2010-2025. Extracted 2026-03-20</li>
+      <li>Eurostat isoc_ciweb -- Websites and functionalities by size class of enterprise, Poland, 2014-2023. Extracted 2026-03-20</li>
+      <li><a href="https://single-market-economy.ec.europa.eu/smes/challenges-and-resilience/late-payment/eu-payment-observatory/observatory-analysis_en" target="_blank">EU Payment Observatory</a>, Annual Report 2025</li>
+      <li><a href="https://www.intrum.com/insights/publications/epr-2025/" target="_blank">Intrum, European Payment Report 2025</a> (n=9,150, 25 countries)</li>
+      <li><a href="https://big.pl/raporty" target="_blank">BIG InfoMonitor / BIK</a>, Debt Registry data, end 2023-2025. SME Survey Dec 2025 (n=500, Keralla Research)</li>
+      <li><a href="https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-western-europe-2025" target="_blank">Atradius</a>, Payment Practices Barometer Poland 2025 (n=210)</li>
+      <li><a href="https://www.ecb.europa.eu/stats/ecb_surveys/safe/html/index.en.html" target="_blank">ECB, SAFE survey</a> Q4 2025</li>
+      <li>Eurostat, <a href="https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20251211-2" target="_blank">"20% of EU enterprises use AI technologies,"</a> Dec 2025</li>
+      <li><a href="https://sunbay.io/pricing" target="_blank">Sunbay.io website (pricing page)</a>, accessed March 2026</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>Market Sizing -- EU-27 (14 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li>Eurostat <a href="https://ec.europa.eu/eurostat/databrowser/view/SBS_SC_OVW/" target="_blank">sbs_sc_ovw</a> -- Enterprise statistics by size class and NACE Rev. 2, EU-27, 2023. Extracted 2026-03-20</li>
+      <li>Eurostat sbs_sc_ovw -- Aggregate file (10-19, 20-49, 50-249 size classes, business economy total). Extracted 2026-03-20</li>
+      <li>EU Payment Observatory <a href="https://single-market-economy.ec.europa.eu/document/download/db1722d8-9cad-40fd-9ad4-f56a907317fa_en" target="_blank">Annual Report 2025</a>. CEPS/EY for European Commission, December 2025</li>
+      <li>EU Payment Observatory <a href="https://cdn.ceps.eu/wp-content/uploads/2024/12/EU-Payment-Observatory_Annual-Report-2024_EA-01-24-061-EN-C.pdf" target="_blank">Annual Report 2024</a>. CEPS/EY for European Commission, January 2025</li>
+      <li><a href="https://www.ecb.europa.eu/stats/ecb_surveys/safe/html/index.en.html" target="_blank">ECB/EC SAFE survey</a> (Survey on the Access to Finance of Enterprises). Quarterly since 2024</li>
+      <li><a href="https://www.intrum.com/insights/publications/epr-2025/" target="_blank">Intrum, European Payment Report 2025</a>. ~10,000 executives, 25 European countries</li>
+      <li><a href="https://www.intrum.com/insights/publications/epr-2024/" target="_blank">Intrum, European Payment Report 2024</a>. 9,255 executives, 25 European countries</li>
+      <li><a href="https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-western-europe-2025" target="_blank">Atradius, Payment Practices Barometer, Western Europe 2025</a>. ~6,500 companies, 31 countries</li>
+      <li>Eurostat isoc_eb_iip -- Integration of internal processes by size class. ICT Usage Survey 2025. Extracted 2026-03-20</li>
+      <li>Eurostat isoc_eb_ai -- Artificial intelligence by size class of enterprise. Extracted 2026-03-20</li>
+      <li>Eurostat, <a href="https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20251211-2" target="_blank">"20% of EU enterprises use AI technologies."</a> News article, Dec 2025</li>
+      <li>Eurostat, <a href="https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20260203-1" target="_blank">"53% EU enterprises used paid cloud services in 2025."</a> News article, Feb 2026</li>
+      <li>Eurostat, <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Cloud_computing_-_statistics_on_the_use_by_enterprises" target="_blank">Cloud computing -- statistics on the use by enterprises</a>. Statistics Explained article</li>
+      <li>Council Directive (EU) 2025/516 -- ViDA (VAT in the Digital Age). Adopted March 2025</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>Market Sizing -- Germany (18 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li>IfM Bonn / Destatis, <a href="https://www.ifm-bonn.org/fileadmin/data/redaktion/statistik/mittelstand_im_einzelnen/dokumente/Unt_2023_D_BR-STR.pdf" target="_blank">Branchenstruktur der Unternehmen 2023</a></li>
+      <li>IfM Bonn / Destatis, <a href="https://www.ifm-bonn.org/fileadmin/data/redaktion/statistik/mittelstand_im_einzelnen/dokumente/Unt_2023_D_GrKl.pdf" target="_blank">Unternehmensbestand nach Grossenklassen 2023</a></li>
+      <li>IfM Bonn / Destatis, <a href="https://www.ifm-bonn.org/fileadmin/data/redaktion/statistik/mittelstand_im_einzelnen/dokumente/Unt_2019-2023_D_WZ.pdf" target="_blank">Entwicklung der Unternehmen 2019-2023 nach Wirtschaftszweigen</a></li>
+      <li>Destatis, <a href="https://www.destatis.de/EN/Themes/Economic-Sectors-Enterprises/Enterprises/Business-Register/Tables/business-register.html" target="_blank">Business Register -- Legal Units, employees and turnover 2024</a></li>
+      <li>Destatis GENESIS-Online, table 48121-0002 (SBS, EU enterprise definition) -- uploaded as CSV</li>
+      <li>Eurostat, <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Businesses_in_distributive_trade_sector" target="_blank">Businesses in distributive trade sector</a> (2022, G45/G46/G47 proportions)</li>
+      <li>EU Payment Observatory, <a href="https://single-market-economy.ec.europa.eu/document/download/db1722d8-9cad-40fd-9ad4-f56a907317fa_en?filename=AnnualReport2025_FinalC.pdf" target="_blank">Annual Report 2025</a> (covering 2024 data)</li>
+      <li>EU Payment Observatory, <a href="https://cdn.ceps.eu/wp-content/uploads/2024/12/EU-Payment-Observatory_Annual-Report-2024_EA-01-24-061-EN-C.pdf" target="_blank">Annual Report 2024</a> (covering 2023 data)</li>
+      <li>Creditreform, <a href="https://www.creditreform.de/aktuelles-wissen/pressemeldungen-fachbeitraege/news-details/show/rezession-zahlungsmoral-verbessert-sich-leicht-bleibt-aber-angespannt" target="_blank">Zahlungsverhalten in Deutschland, Q3 2025</a> (~4M invoice transactions)</li>
+      <li>Coface, <a href="https://www.coface.com/news-economy-and-insights/germany-corporate-payment-survey-2024-simmering-under-the-lid" target="_blank">Germany Corporate Payment Survey 2024</a></li>
+      <li>Coface, <a href="https://www.coface.com/news-economy-and-insights/germany-corporate-payment-survey-2025-it-gets-worse-before-it-could-get-better" target="_blank">Germany Corporate Payment Survey 2025</a></li>
+      <li>Atradius, <a href="https://atradiuscollections.com/us/knowledge-and-research/reports/b2b-payment-practices-trends-germany-2025" target="_blank">B2B Payment Practices Trends -- Germany 2025</a></li>
+      <li>Atradius, <a href="https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-western-europe-2025" target="_blank">B2B Payment Practices Trends -- Western Europe 2025</a></li>
+      <li>Eurostat isoc_eb_ai (AI adoption by size class) -- uploaded as XLSX. Last updated 27/02/2026</li>
+      <li>Eurostat isoc_eb_iip (ERP, CRM, BI adoption by size class) -- uploaded as XLSX. Last updated 27/02/2026</li>
+      <li>Eurostat, <a href="https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20251211-2" target="_blank">"20% of EU enterprises use AI technologies"</a> (Dec 2025)</li>
+      <li><a href="https://sunbay.io/pricing" target="_blank">Sunbay.io pricing page</a></li>
+      <li>VATupdate / EDICOM / Marosa VAT (Germany e-invoicing) -- <a href="https://edicomgroup.com/electronic-invoicing/germany" target="_blank">EDICOM</a></li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>Market Sizing -- France (14 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li>Eurostat, <a href="https://ec.europa.eu/eurostat/databrowser/view/SBS_SC_OVW/" target="_blank">Structural Business Statistics (sbs_sc_ovw)</a>, France, 2023/2024p. Extracted 2026-03-20</li>
+      <li>Eurostat, Distributive Trades by Size Class (sbs_sc_dt_r2), France, 2011-2020. Extracted from project file</li>
+      <li>Eurostat, ICT Usage in Enterprises (isoc_eb_iip), France, 2023/2025. Extracted from project file</li>
+      <li>Eurostat, AI in Enterprises (isoc_eb_ai), France, 2021-2025. Extracted from project file</li>
+      <li>Banque de France, Observatoire des delais de paiement -- Rapport annuel 2024 (published July 2025)</li>
+      <li>Altares/D&amp;B, Comportements de paiement des entreprises, Q4 2024 (cited in Observatoire 2024)</li>
+      <li><a href="https://group.atradius.com/knowledge-and-research/reports/b2b-payment-practices-trends-western-europe-2025" target="_blank">Atradius, Payment Practices Barometer -- France 2025</a> (survey Q1/Q2 2025)</li>
+      <li>INSEE, Base Esane, Credit interentreprises 2022-2023 (cited in Observatoire 2024, Encadre 1)</li>
+      <li><a href="https://single-market-economy.ec.europa.eu/smes/challenges-and-resilience/late-payment/eu-payment-observatory/observatory-analysis_en" target="_blank">EU Payment Observatory</a>, Annual Report 2025 (published December 2025)</li>
+      <li><a href="https://www.intrum.com/insights/publications/epr-2025/" target="_blank">Intrum, European Payment Report 2024/2025</a></li>
+      <li>European Commission, SBA Country Fact Sheet -- France 2025</li>
+      <li>EY Tax Alert, "France announces simplification for September 2026 e-invoicing mandate", August 2025</li>
+      <li>Service-Public.fr, "Facturation electronique: c'est bientot!", January 2026</li>
+      <li>CGF (Confederation des Grossistes de France), Enquete annuelle sur les delais de paiement, 2024</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>Team Analysis (7 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li>LinkedIn -- <a href="https://www.linkedin.com/in/philipsz" target="_blank">Filip Szczecinski</a></li>
+      <li>LinkedIn -- <a href="https://www.linkedin.com/in/dawiddzierzynski" target="_blank">Dawid Dzierzynski</a></li>
+      <li>LinkedIn -- <a href="https://www.linkedin.com/in/cabalanikodem" target="_blank">Nikodem Cabala</a></li>
+      <li>LinkedIn -- <a href="https://www.linkedin.com/in/kamil-jalowiec" target="_blank">Kamil Jalowiec</a></li>
+      <li>Sunbay Pitch Deck (slides 8, 10)</li>
+      <li><a href="https://sunbay.io" target="_blank">Sunbay.io website snapshot</a> (client logos)</li>
+      <li>Project memory notes (investor details, client analysis)</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>Product Analysis (33 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li>Sunbay Pitch Deck (uploaded PDF)</li>
+      <li><a href="https://sunbay.io" target="_blank">sunbay.io website</a> -- homepage, pricing, integrations (accessed 2026-03-18)</li>
+      <li>Pitch video schema (user-verified, stored in project memory)</li>
+      <li>LinkedIn -- Nikodem Cabala (uploaded PDF)</li>
+      <li>LinkedIn -- Filip Szczecinski (uploaded PDF)</li>
+      <li>LinkedIn -- Dawid Dzierzynski (uploaded PDF)</li>
+      <li><a href="https://pitchbook.com/profiles/company/104545-63" target="_blank">PitchBook -- Chaser profile</a> ($6.17M raised, founded 2013)</li>
+      <li><a href="https://www.cbinsights.com/company/chaser" target="_blank">CB Insights -- Chaser profile</a> ($4M raised)</li>
+      <li><a href="https://app.dealroom.co/companies/chaser_1" target="_blank">Dealroom -- Chaser profile</a> ($4.79M raised, founded 2013)</li>
+      <li><a href="https://www.g2.com/products/chaser/pricing" target="_blank">G2 -- Chaser pricing</a> (updated Jul 2025)</li>
+      <li><a href="https://www.getapp.com/finance-accounting-software/a/chaser/" target="_blank">GetApp -- Chaser profile</a></li>
+      <li><a href="https://www.cbinsights.com/company/upflow-1/financials" target="_blank">CB Insights -- Upflow financials</a> ($22.85M raised)</li>
+      <li><a href="https://tracxn.com/d/companies/upflow/" target="_blank">Tracxn -- Upflow profile</a>, Sep 2025 (68 employees as of Dec 2024)</li>
+      <li><a href="https://getlatka.com/companies/upflow" target="_blank">GetLatka -- Upflow</a> ($4.1M revenue, 75 employees)</li>
+      <li><a href="https://www.finsmes.com/2022/04/gaviti-raises-9m-in-series-a-funding.html" target="_blank">FinSMEs -- Gaviti Series A</a></li>
+      <li><a href="https://pitchbook.com/profiles/company/277121-80" target="_blank">PitchBook -- Gaviti</a> ($11.5M total raised)</li>
+      <li><a href="https://getlatka.com/companies/gaviti" target="_blank">GetLatka -- Gaviti</a> ($6.6M revenue as of Oct 2024)</li>
+      <li><a href="https://nerdisa.com/gaviti/" target="_blank">Nerdisa -- Gaviti review</a>, Aug 2025</li>
+      <li><a href="https://lawyerist.com/reviews/accounting-billing-finance/collbox/" target="_blank">Lawyerist -- CollBox review</a>, Sep 2025</li>
+      <li><a href="https://www.saasworthy.com/product/upflow-io/pricing" target="_blank">SaaSworthy -- Upflow pricing</a></li>
+      <li><a href="https://elevenlabs.io/blog/how-do-you-optimize-latency-for-conversational-ai" target="_blank">ElevenLabs -- Conversational AI latency blog</a>, Jan 2025</li>
+      <li><a href="https://hamming.ai/resources/voice-ai-latency-whats-fast-whats-slow-how-to-fix-it" target="_blank">Hamming AI -- Voice AI latency analysis</a> (4M+ calls), 2025-2026</li>
+      <li>Stivers et al., 2009 -- "Universals and cultural variation in turn-taking in conversation," PNAS</li>
+      <li>EU AI Act -- Regulation (EU) 2024/1689, Annex III: <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank">Regulatory framework for AI</a></li>
+      <li><a href="https://www.europarl.europa.eu/topics/en/article/20230601STO93804/eu-ai-act-first-regulation-on-artificial-intelligence" target="_blank">European Parliament -- EU AI Act summary</a></li>
+      <li>GDPR -- Regulation (EU) 2016/679, Articles 5, 6, 13, 17, 21, 22, 83</li>
+      <li>Polish Penal Code, Article 267 -- via <a href="https://en.wikipedia.org/wiki/Telephone_call_recording_laws" target="_blank">Wikipedia: Telephone call recording laws</a></li>
+      <li><a href="https://wykryjpodsluch.pl/en/is-it-legal-to-record-a-conversation/" target="_blank">Wykryj Podsluch -- Polish recording law</a>, Feb 2025</li>
+      <li><a href="https://www.cloudtalk.io/blog/is-call-recording-legal/" target="_blank">CloudTalk -- Call recording laws</a>, Jun 2025</li>
+      <li>German Criminal Code (StGB), s201</li>
+      <li><a href="https://www.dudkowiak.com/contract-law-in-poland/" target="_blank">Polish Civil Code -- Dudkowiak &amp; Putyra</a>, updated Jan 2026</li>
+      <li><a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank">Stanford HAI -- "AI on Trial"</a>, 2024</li>
+      <li><a href="https://www.mhc.ie/latest/insights/beware-of-use-of-ai-in-legal-proceedings" target="_blank">Mason Hayes &amp; Curran -- "Beware of Use of AI in Legal Proceedings"</a>, Dec 2025</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>Competitive Landscape (52 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li><a href="https://sunbay.io" target="_blank">sunbay.io</a> (website, pricing page, integration page) -- accessed 2026-03-18</li>
+      <li>sunbay.io pitch deck -- uploaded document</li>
+      <li><a href="https://www.chaserhq.com/" target="_blank">chaserhq.com</a> (website, pricing, integrations, guide) -- accessed 2026-03-20</li>
+      <li>Chaser on <a href="https://app.dealroom.co/companies/chaser_1" target="_blank">Dealroom.co</a> -- accessed 2026-03-20</li>
+      <li>Chaser on Tracxn -- accessed 2026-03-20</li>
+      <li>Chaser on <a href="https://pitchbook.com/profiles/company/104545-63" target="_blank">PitchBook</a> (summary page) -- accessed 2026-03-20</li>
+      <li>Chaser on <a href="https://getlatka.com/companies/chaser" target="_blank">Getlatka.com</a> -- accessed 2026-03-20</li>
+      <li>Chaser on LeadIQ -- accessed 2026-03-20</li>
+      <li>Chaser on CB Insights -- accessed 2026-03-20</li>
+      <li>UKTN, "Cloud software Chaser announces $4m funding" -- Nov 2019</li>
+      <li>Cledara, "The Top Accounts Receivable Software for 2024: Upflow vs Chaser" -- accessed 2026-03-20</li>
+      <li><a href="https://upflow.io" target="_blank">upflow.io</a> (website, blog, integrations help center) -- accessed 2026-03-20</li>
+      <li>Upflow on <a href="https://tracxn.com/d/companies/upflow/" target="_blank">Tracxn</a> -- accessed 2026-03-20</li>
+      <li>Upflow on PitchBook (summary page) -- accessed 2026-03-20</li>
+      <li>Upflow on Crunchbase -- accessed 2026-03-20</li>
+      <li>Upflow on <a href="https://getlatka.com/companies/upflow" target="_blank">Getlatka.com</a> -- accessed 2026-03-20</li>
+      <li>Upflow on LeadIQ -- accessed 2026-03-20</li>
+      <li>Finextra, "Upflow raises $15m to help B2B businesses get paid" -- Jun 2021</li>
+      <li>Upflow blog, "Upflow Raises $15m" -- Jun 2021</li>
+      <li>GetApp Upflow listing -- accessed 2026-03-20</li>
+      <li><a href="https://www.gaviti.com" target="_blank">gaviti.com</a> (website, pricing, product page) -- accessed 2026-03-20</li>
+      <li>Gaviti on PitchBook (summary page) -- accessed 2026-03-20</li>
+      <li>Gaviti on Tracxn -- accessed 2026-03-20</li>
+      <li>Gaviti on Crunchbase -- accessed 2026-03-20</li>
+      <li>Gaviti on <a href="https://getlatka.com/companies/gaviti" target="_blank">Getlatka.com</a> -- accessed 2026-03-20</li>
+      <li>Gaviti on LeadIQ -- accessed 2026-03-20</li>
+      <li>Gaviti on CB Insights -- accessed 2026-03-20</li>
+      <li>GetApp Gaviti listing -- accessed 2026-03-20</li>
+      <li><a href="https://www.tesorio.com" target="_blank">tesorio.com</a> (website, blog, NetSuite page) -- accessed 2026-03-20</li>
+      <li>Tesorio Help Center (help.tesorio.com) -- integrations list -- accessed 2026-03-20</li>
+      <li>Tesorio on Tracxn -- accessed 2026-03-20</li>
+      <li>Tesorio on PitchBook (summary page) -- accessed 2026-03-20</li>
+      <li>Tesorio on Crunchbase -- accessed 2026-03-20</li>
+      <li>Tesorio on Getlatka.com -- accessed 2026-03-20</li>
+      <li>TechCrunch, "Tesorio's tools help businesses automate payments collection" -- Jul 2022</li>
+      <li>TechCrunch, "Tesorio raises $10M Series A" -- Sep 2019</li>
+      <li>GetApp Tesorio listing -- accessed 2026-03-20</li>
+      <li><a href="https://vindicat.pl" target="_blank">vindicat.pl</a> (website, cennik, windykacja-online, FAQ) -- accessed 2026-03-20</li>
+      <li>Vindicat on Dealroom.co -- accessed 2026-03-20</li>
+      <li>Vindicat on CB Insights -- accessed 2026-03-20</li>
+      <li>Vindicat on Crunchbase -- accessed 2026-03-20</li>
+      <li>comarch.pl/erp/comarch-optima (website, cennik, windykacja page) -- accessed 2026-03-20</li>
+      <li>Comarch press release, "Comarch ma ponad 20 procent rynku ERP" -- accessed 2026-03-20</li>
+      <li>Kompix.pl -- Comarch ERP Optima cennik -- accessed 2026-03-20</li>
+      <li>wfirma.pl (website, windykacja page) -- accessed 2026-03-20</li>
+      <li>pomoc.wfirma.pl -- payment reminder documentation -- accessed 2026-03-20</li>
+      <li>pomoc.fakturownia.pl -- automatic reminders documentation -- accessed 2026-03-20</li>
+      <li>pomoc.infakt.pl -- payment reminder community post -- accessed 2026-03-20</li>
+      <li>App Advisory Plus -- Chaser profile -- accessed 2026-03-20</li>
+      <li>G2.com -- pricing pages for Chaser, Gaviti, Tesorio -- accessed 2026-03-20</li>
+      <li>PYMNTS.com -- Chaser/Sage integration articles (Feb 2025, Jul 2025) -- accessed 2026-03-20</li>
+      <li>Research.com -- Upflow Review 2026 -- accessed 2026-03-20</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>Integration Landscape (22 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li>sunbay.io/finance-stack-integration (accessed 2026-03-18)</li>
+      <li>Sunbay Pitch Deck</li>
+      <li><a href="https://app.fakturownia.pl/api" target="_blank">app.fakturownia.pl/api</a></li>
+      <li><a href="https://github.com/fakturownia/API" target="_blank">github.com/fakturownia/API</a></li>
+      <li><a href="https://systim.pl/API/" target="_blank">systim.pl/API/</a></li>
+      <li><a href="https://doc.wfirma.pl" target="_blank">doc.wfirma.pl</a></li>
+      <li><a href="https://saldeosmart.pl/integracje/api-engine" target="_blank">saldeosmart.pl/integracje/api-engine</a></li>
+      <li><a href="https://infakt.pl/developers/" target="_blank">infakt.pl/developers/</a></li>
+      <li><a href="https://github.com/infakt/API" target="_blank">github.com/infakt/API</a></li>
+      <li>insert.com.pl (InsERT developer portal)</li>
+      <li>smsapi.pl/docs</li>
+      <li>germanpedia.com/best-accounting-software-germany/ (March 2026)</li>
+      <li>settle-in-berlin.com/best-accounting-software-germany/ (January 2026)</li>
+      <li>accountable.de/en/blog/e-invoicing-software-comparison/ (August 2025)</li>
+      <li><a href="https://api.sevdesk.de" target="_blank">api.sevdesk.de</a></li>
+      <li>github.com/j-mastr/sevdesk-api</li>
+      <li><a href="https://developers.lexoffice.io" target="_blank">developers.lexoffice.io</a></li>
+      <li><a href="https://maesn.com/blogs/lexware-office-api-explained" target="_blank">maesn.com/blogs/lexware-office-api-explained</a> (October 2025)</li>
+      <li><a href="https://developer.datev.de" target="_blank">developer.datev.de</a></li>
+      <li><a href="https://apideck.com/blog/datev-api-integration-guide" target="_blank">apideck.com/blog/datev-api-integration-guide</a> (October 2025)</li>
+      <li><a href="https://chift.eu/blog/2025-guide-to-integrating-accounting-software-as-a-fintech-in-france" target="_blank">chift.eu -- 2025 guide to integrating accounting software in France</a></li>
+      <li><a href="https://pennylane.readme.io" target="_blank">pennylane.readme.io</a></li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>Traction & Benchmarking (26 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li>Sunbay Pitch Deck (uploaded, slide 10)</li>
+      <li><a href="https://sunbay.io/" target="_blank">sunbay.io</a> (accessed 2026-03-18)</li>
+      <li><a href="https://www.flowjam.com/blog/seed-round-valuation-2025-complete-founders-guide" target="_blank">Flowjam -- seed round valuation 2025 guide</a></li>
+      <li><a href="https://tomtunguz.com/mrr-growth/" target="_blank">Tom Tunguz -- MRR growth</a></li>
+      <li><a href="https://www.vitally.io/post/saas-churn-benchmarks" target="_blank">Recurly 2025 Churn Report</a> (via Vitally, April 2025)</li>
+      <li><a href="https://www.forumvc.com/thought-pieces/raise-for-resilience" target="_blank">ForumVC -- raise for resilience</a> (2025)</li>
+      <li><a href="https://www.re-cap.com/benchmarking-tool" target="_blank">re-cap benchmarking tool</a></li>
+      <li><a href="https://medium.com/inside-hexa/upflow-ef18-raises-2-8m-to-help-companies-get-paid-on-time-5e30d172b314" target="_blank">Hexa blog -- Upflow seed announcement</a></li>
+      <li><a href="https://tracxn.com/d/companies/upflow/" target="_blank">Tracxn -- Upflow</a></li>
+      <li><a href="https://www.ycombinator.com/companies/upflow" target="_blank">Y Combinator -- Upflow</a></li>
+      <li><a href="https://techcrunch.com/2021/06/14/upflow-raises-15-million-to-manage-your-outstanding-invoices/" target="_blank">TechCrunch -- Upflow Series A</a> (June 2021)</li>
+      <li><a href="https://www.crunchbase.com/funding_round/upflow-seed--b17a04e0" target="_blank">Crunchbase -- Upflow seed round</a></li>
+      <li><a href="https://getlatka.com/companies/upflow" target="_blank">GetLatka -- Upflow</a></li>
+      <li><a href="https://medium.com/inside-hexa/upflow-ef18-grabs-15m-series-a-to-revolutionize-how-b2b-businesses-get-paid-fce391e09ce6" target="_blank">Hexa blog -- Upflow Series A</a></li>
+      <li><a href="https://upflow.io/blog/business-to-business-payments/upflow-announces-5-million-in-new-funding-to-revolutionize-b2b-payments" target="_blank">Upflow blog -- Series A extension</a> (April 2024)</li>
+      <li><a href="https://pitchbook.com/profiles/company/268120-18" target="_blank">PitchBook -- Upflow</a></li>
+      <li><a href="https://app.dealroom.co/companies/chaser_1" target="_blank">Dealroom -- Chaser</a></li>
+      <li><a href="https://www.crunchbase.com/funding_round/chaser-seed--de002128" target="_blank">Crunchbase -- Chaser seed round</a></li>
+      <li><a href="https://www.finsmes.com/2019/11/chaser-raises-4m-in-growth-funding.html" target="_blank">FinSMEs -- Chaser growth funding</a> (November 2019)</li>
+      <li><a href="https://pitchbook.com/profiles/company/104545-63" target="_blank">PitchBook -- Chaser</a></li>
+      <li><a href="https://www.chaserhq.com/" target="_blank">chaserhq.com</a> (accessed 2026-03-20)</li>
+      <li><a href="https://www.chaserhq.com/chaser-pricing" target="_blank">Chaser pricing page</a> (accessed 2026-03-20)</li>
+      <li><a href="https://find-and-update.company-information.service.gov.uk/company/08517987/filing-history" target="_blank">UK Companies House -- Chaser filing history</a></li>
+      <li><a href="https://www.owler.com/company/chaserhq" target="_blank">Owler -- Chaser</a></li>
+      <li><a href="https://www.zoominfo.com/c/chaser-technologies-ltd/404432796" target="_blank">ZoomInfo -- Chaser</a></li>
+      <li><a href="https://growjo.com/company/Chaser" target="_blank">Growjo -- Chaser</a></li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>S16VC Fund Analysis (18 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li><a href="https://www.eu.vc/p/the-path-to-oversubscribed-the-learnings" target="_blank">eu.vc -- "The path to oversubscribed"</a> (April 2025)</li>
+      <li><a href="https://www.eu.vc/p/s16vcs-oleg-bibergan-on-scaling-founder" target="_blank">eu.vc -- "Oleg Bibergan on scaling founder"</a> (April 2025)</li>
+      <li><a href="https://pitchbook.com/profiles/investor/438842-35" target="_blank">PitchBook -- S16VC investor profile</a></li>
+      <li><a href="https://pitchbook.com/profiles/fund/22388-32F" target="_blank">PitchBook -- Fund II</a></li>
+      <li><a href="https://pitchbook.com/profiles/fund/27014-23F" target="_blank">PitchBook -- Fund I</a></li>
+      <li><a href="https://www.cbinsights.com/investor/s16vc" target="_blank">CB Insights -- S16VC</a></li>
+      <li><a href="https://tracxn.com/d/venture-capital/s16vc/" target="_blank">Tracxn -- S16VC</a> (Jan 2026)</li>
+      <li><a href="https://www.crunchbase.com/organization/s16vc" target="_blank">Crunchbase -- S16VC</a></li>
+      <li><a href="https://nordic9.com/companies/s16-investor5158290518/" target="_blank">Nordic 9 -- S16VC</a></li>
+      <li><a href="https://fintech.global/2026/02/04/taxnova-joins-a16z-speedrun-after-1m-pre-seed-raise/" target="_blank">fintech.global -- TaxNova pre-seed</a></li>
+      <li><a href="https://www.thesaasnews.com/news/newo-ai-bags-25-million-in-series-a" target="_blank">thesaasnews -- Newo.ai Series A</a> (Feb 2026)</li>
+      <li><a href="https://www.eu-startups.com/2025/03/beyond-voices-dubformer-raises-e3-4-million-to-transform-the-art-of-dubbing/" target="_blank">eu-startups -- DubFormer seed</a></li>
+      <li><a href="https://siliconangle.com/2025/04/23/cynomi-nabs-37m-ai-powered-vciso-platform/" target="_blank">SiliconAngle -- Cynomi Series B</a></li>
+      <li><a href="https://www.msspalert.com/news/cynomi-lands-additional-20m-for-vciso-platform" target="_blank">MSSP Alert -- Cynomi Series A</a> (Apr 2024)</li>
+      <li><a href="https://www.wordsmith.ai/blog/wordsmith-funding-index-general-catalyst" target="_blank">Wordsmith -- funding / General Catalyst</a></li>
+      <li><a href="https://www.finsmes.com/2026/02/taxnova-raises-1m-in-pre-seed-funding.html" target="_blank">FinSMEs -- TaxNova pre-seed</a></li>
+      <li><a href="https://siliconangle.com/2026/02/10/newo-lands-25m-bring-production-ready-ai-receptionists-small-businesses/" target="_blank">SiliconAngle -- Newo.ai $25M</a></li>
+      <li><a href="https://www.linkedin.com/company/s16vc" target="_blank">LinkedIn -- S16VC</a></li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>Indirect Competitors (33 sources)</summary>
+    <div class="detail-content sources-list"><ol>
+      <li>GUS -- Dzialalnosc przedsiebiorstw windykacyjnych w 2024 roku, via bank.pl (August 2025)</li>
+      <li>GUS -- Dzialalnosc przedsiebiorstw windykacyjnych w 2023 roku, via bank.pl (August 2024)</li>
+      <li>GUS -- firmy windykacyjne w 2024 r., via horecatrends.pl (August 2025)</li>
+      <li>GUS -- Dzialalnosc przedsiebiorstw windykacyjnych w 2022 roku, via rp.pl (August 2023)</li>
+      <li>GUS -- firmy windykacyjne na koniec 2021 r., via Bankier.pl (August 2022)</li>
+      <li><a href="https://www.kancelariarubikon.pl/windykacja-naleznosci-na-zlecenie" target="_blank">Kancelaria Rubikon -- windykacja naleznosci na zlecenie</a></li>
+      <li><a href="https://www.ltlaw.pl/blog/samodzielna-windykacja-naleznosci-i-obsluga-prawna-przez-kancelarie-windykacyjne/" target="_blank">LT LAW Kancelaria -- samodzielna windykacja a kancelarie windykacyjne</a> (August 2022)</li>
+      <li><a href="https://www.aif.com.pl/windykacja/windykacja-przedsiebiorstw/" target="_blank">AIF Kancelaria -- windykacja przedsiebiorstw</a> (January 2026)</li>
+      <li><a href="https://www.aif.com.pl/koszty-windykacji-tylko-189zl/" target="_blank">AIF Kancelaria -- koszty windykacji 189 zl</a> (March 2026)</li>
+      <li><a href="http://www.biznes-simplex.pl/Home/Cennik" target="_blank">Simplex -- cennik</a></li>
+      <li><a href="https://www.fluence.com.pl/" target="_blank">Fluence Finance -- firma windykacyjna</a> (March 2024)</li>
+      <li><a href="https://www.mgbi.pl/blog/najwieksze-firmy-windykacyjne-w-polsce/" target="_blank">MGBI.pl -- Najwieksze firmy windykacyjne w Polsce</a> (January 2026)</li>
+      <li><a href="https://www.dudkowiak.com/debt-collection-in-poland/" target="_blank">Dudkowiak &amp; Putyra -- Debt Collection in Poland</a> (December 2025)</li>
+      <li><a href="https://www.allianz-trade.com/en_global/economic-research/collection-complexity/poland.html" target="_blank">Allianz Trade -- Poland Debt Collection Complexity Report</a></li>
+      <li>Cognitive Market Research -- Debt Collection Services Market Report (January 2026)</li>
+      <li>Market Data Forecast -- Europe Debt Collection Software Market (April 2025)</li>
+      <li>Debexpert.com -- Top 10 Largest Debt Collection Agencies (February 2026)</li>
+      <li>Atradius Collections -- B2B Debt Collections Services in Poland (September 2024)</li>
+      <li>Market Growth Reports -- Debt Collection Services Market Size &amp; Share Trends (2024)</li>
+      <li><a href="https://6sense.com/tech/integration/zapier-market-share" target="_blank">6sense -- Zapier Market Share</a></li>
+      <li><a href="https://sqmagazine.co.uk/zapier-statistics/" target="_blank">SQ Magazine -- Zapier Statistics 2026</a> (November 2025)</li>
+      <li>SimilarWeb via electroiq.com -- Zapier Statistics (May 2025)</li>
+      <li><a href="https://enlyft.com/tech/products/zapier" target="_blank">Enlyft -- Zapier Market Share</a></li>
+      <li><a href="https://community.zapier.com/how-do-i-3/how-to-set-up-recurring-payment-reminder-emails-at-different-intervals-50342" target="_blank">Zapier Community Forum -- "How to set up recurring payment reminder emails at different intervals?"</a> (July 2025)</li>
+      <li><a href="https://zapier.com/pricing" target="_blank">Zapier.com -- Plans &amp; Pricing</a></li>
+      <li><a href="https://pxlpeak.com/blog/ai-tools/make-pricing-guide" target="_blank">PxlPeak -- Make.com Pricing 2026</a> (March 2026)</li>
+      <li><a href="https://n8n.io/pricing/" target="_blank">n8n.io -- Plans and Pricing</a></li>
+      <li><a href="https://cipherprojects.com/blog/posts/n8n-vs-make-automation-platform-comparison/" target="_blank">Cipher Projects -- n8n vs Make comparison</a> (2026)</li>
+      <li><a href="https://www.make.com/en/compare/make-vs-n8n" target="_blank">Make.com -- Make vs n8n comparison</a> (2025-2026)</li>
+      <li>Eesel.ai -- Zapier subscription guide (2025)</li>
+      <li>First AI Movers -- Zapier 2026 pricing platform comparison (December 2025)</li>
+      <li>Sunbay Pitch Deck -- slides 3, 5, 7</li>
+      <li><a href="https://sunbay.io/" target="_blank">Sunbay Website</a> (accessed March 2026)</li>
+    </ol></div>
+  </details>
+</section>
+
+</main>
+
+<script>
+// ===== Utility =====
+function fmt(n) {
+  if (n >= 1e9) return '$' + (n/1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return '$' + (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+  return '$' + n.toFixed(0);
+}
+
+// ===== Return Calculator =====
+function calcUpdate() {
+  var check = +document.getElementById('r-check').value;
+  var postmoney = +document.getElementById('r-postmoney').value;
+  var fund = +document.getElementById('r-fund').value;
+  var dilution = +document.getElementById('r-dilution').value / 100;
+  var exit = Math.pow(10, +document.getElementById('r-exit').value);
+
+  document.getElementById('v-check').textContent = fmt(check);
+  document.getElementById('v-postmoney').textContent = fmt(postmoney);
+  document.getElementById('v-fund').textContent = fmt(fund);
+  document.getElementById('v-dilution').textContent = (dilution*100).toFixed(0) + '%';
+  document.getElementById('v-exit').textContent = fmt(exit);
+
+  var ownership = check / postmoney;
+  var ownExit = ownership * (1 - dilution);
+  var gross = exit * ownExit;
+  var multiple = gross / check;
+  var fundRet = gross / fund;
+  var req1x = fund / ownExit;
+  var req3x = (3 * fund) / ownExit;
+  var req10x = (10 * fund) / ownExit;
+
+  document.getElementById('o-ownership').textContent = (ownership*100).toFixed(1) + '%';
+  document.getElementById('o-ownexit').textContent = (ownExit*100).toFixed(1) + '%';
+  document.getElementById('o-gross').textContent = fmt(gross);
+  document.getElementById('o-multiple').textContent = multiple.toFixed(1) + 'x';
+  document.getElementById('o-fundret').textContent = fundRet.toFixed(2) + 'x (' + (fundRet*100).toFixed(0) + '%)';
+  document.getElementById('o-req1x').textContent = fmt(req1x);
+  document.getElementById('o-req3x').textContent = fmt(req3x);
+  document.getElementById('o-req10x').textContent = fmt(req10x);
+}
+
+['r-check','r-postmoney','r-fund','r-dilution','r-exit'].forEach(function(id) {
+  document.getElementById(id).addEventListener('input', calcUpdate);
+});
+calcUpdate();
+
+// ===== TAM Table =====
+var tamData = {
+  conservative: [
+    ['Poland', 'EUR48.7M', '36,858', 'EUR1,320'],
+    ['Germany', 'EUR303.2M', '229,732', 'EUR1,320'],
+    ['France', 'EUR127.5M', '96,578', 'EUR1,320'],
+    ['EU-27', 'EUR1.23B', '~932K', 'EUR1,320']
+  ],
+  extended: [
+    ['Poland', 'EUR62.9M', '47,685', 'EUR1,320'],
+    ['Germany', 'EUR376.4M', '285,175', 'EUR1,320'],
+    ['France', 'EUR158.3M', '119,959', 'EUR1,320'],
+    ['EU-27', 'EUR1.48B', '~1.12M', 'EUR1,320']
+  ]
+};
+
+function setTAM(type) {
+  document.getElementById('tam-cons-btn').classList.toggle('active', type === 'conservative');
+  document.getElementById('tam-ext-btn').classList.toggle('active', type === 'extended');
+  var tbody = document.getElementById('tam-body');
+  while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+  tamData[type].forEach(function(row) {
+    var tr = document.createElement('tr');
+    row.forEach(function(cell, i) {
+      var td = document.createElement('td');
+      td.textContent = cell;
+      if (i === 1) td.style.color = 'var(--accent)';
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+}
+
+document.getElementById('tam-cons-btn').addEventListener('click', function() { setTAM('conservative'); });
+document.getElementById('tam-ext-btn').addEventListener('click', function() { setTAM('extended'); });
+setTAM('conservative');
+
+// ===== Competitor Comparison =====
+var compNames = ['sunbay','chaser','upflow','gaviti','tesorio'];
+var compLabels = ['Sunbay','Chaser','Upflow','Gaviti','Tesorio'];
+var compActive = {sunbay:true, chaser:true, upflow:true, gaviti:true, tesorio:true};
+var compRows = [
+  ['HQ', 'Krakow', 'London', 'Paris', 'Tel Aviv', 'San Francisco'],
+  ['Founded', '2025', '2013', '2018', '2018', '2015'],
+  ['Employees', '3+1', '~30-33', '~68-72', '~35', '~62'],
+  ['Funding', '$60K', '~$4.8M', '~$23M', '~$11.5M', '~$35.5M'],
+  ['Est. Revenue', '~$18K ARR', '~$3.3M', '~$4.1M', '~$3.8-6.6M', '~$11M'],
+  ['Polish Integrations', '6 tools', '0', '0', '0', '0'],
+  ['Payment Portal', 'No', 'Yes', 'Yes', 'Yes', 'Yes'],
+  ['Auto Calls', 'Planned', 'Yes', 'No', 'No', 'No'],
+  ['Credit Checks', 'No', 'Yes', 'No', 'Yes', 'No'],
+  ['Entry Price', 'EUR100/mo', '$200/mo', 'Custom', '~$200/mo', 'Custom']
+];
+var accentCells = {'Polish Integrations':[0], 'Payment Portal':[1,2,3,4], 'Auto Calls':[1], 'Credit Checks':[1,3]};
+var riskCells = {'Polish Integrations':[1,2,3,4], 'Payment Portal':[0], 'Auto Calls':[2,3,4], 'Credit Checks':[0,2,4]};
+
+function renderComp() {
+  var header = document.getElementById('comp-header');
+  var body = document.getElementById('comp-body');
+  while (header.firstChild) header.removeChild(header.firstChild);
+  while (body.firstChild) body.removeChild(body.firstChild);
+
+  var th0 = document.createElement('th');
+  th0.textContent = '';
+  header.appendChild(th0);
+
+  compNames.forEach(function(name, i) {
+    if (!compActive[name]) return;
+    var th = document.createElement('th');
+    th.textContent = compLabels[i];
+    header.appendChild(th);
+  });
+
+  compRows.forEach(function(row) {
+    var tr = document.createElement('tr');
+    var tdLabel = document.createElement('td');
+    tdLabel.textContent = row[0];
+    tr.appendChild(tdLabel);
+    compNames.forEach(function(name, i) {
+      if (!compActive[name]) return;
+      var td = document.createElement('td');
+      td.textContent = row[i+1];
+      if (accentCells[row[0]] && accentCells[row[0]].indexOf(i) !== -1) td.style.color = 'var(--accent)';
+      if (riskCells[row[0]] && riskCells[row[0]].indexOf(i) !== -1) td.style.color = 'var(--risk)';
+      tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+}
+
+var togglesEl = document.getElementById('comp-toggles');
+compNames.forEach(function(name, i) {
+  var btn = document.createElement('button');
+  btn.className = 'comp-toggle active';
+  btn.textContent = compLabels[i];
+  btn.addEventListener('click', function() {
+    compActive[name] = !compActive[name];
+    btn.classList.toggle('active', compActive[name]);
+    renderComp();
+  });
+  togglesEl.appendChild(btn);
+});
+renderComp();
+
+// ===== TAM Waterfall =====
+var wfData = {
+  conservative: [
+    ['EU-27', 1230, '#F66731'],
+    ['DE + FR', 431, '#D4562A'],
+    ['Germany', 303, '#3A2F98'],
+    ['France', 128, '#5A4FBB'],
+    ['Poland', 49, '#F3B701']
+  ],
+  extended: [
+    ['EU-27', 1480, '#F66731'],
+    ['DE + FR', 535, '#D4562A'],
+    ['Germany', 376, '#3A2F98'],
+    ['France', 158, '#5A4FBB'],
+    ['Poland', 63, '#F3B701']
+  ]
+};
+var currentWF = 'conservative';
+
+function renderWaterfall() {
+  var data = wfData[currentWF];
+  var maxVal = data[0][1];
+  var container = document.getElementById('waterfall-chart');
+  while (container.firstChild) container.removeChild(container.firstChild);
+
+  data.forEach(function(d) {
+    var row = document.createElement('div');
+    row.className = 'wf-bar-row';
+
+    var label = document.createElement('div');
+    label.className = 'wf-bar-label';
+    label.textContent = d[0];
+    row.appendChild(label);
+
+    var track = document.createElement('div');
+    track.className = 'wf-bar-track';
+
+    var bar = document.createElement('div');
+    bar.className = 'wf-bar';
+    bar.style.width = Math.max((d[1] / maxVal) * 100, 3) + '%';
+    bar.style.background = d[2];
+
+    var val = document.createElement('span');
+    val.textContent = 'EUR' + d[1] + 'M';
+    bar.appendChild(val);
+    track.appendChild(bar);
+    row.appendChild(track);
+    container.appendChild(row);
+  });
+}
+
+document.getElementById('wf-cons').addEventListener('click', function() {
+  currentWF = 'conservative';
+  document.getElementById('wf-cons').classList.add('active');
+  document.getElementById('wf-ext').classList.remove('active');
+  renderWaterfall();
+});
+document.getElementById('wf-ext').addEventListener('click', function() {
+  currentWF = 'extended';
+  document.getElementById('wf-ext').classList.add('active');
+  document.getElementById('wf-cons').classList.remove('active');
+  renderWaterfall();
+});
+renderWaterfall();
+
+// ===== Nav Highlight =====
+var sections = document.querySelectorAll('section[id]');
+var navLinks = document.querySelectorAll('nav a');
+window.addEventListener('scroll', function() {
+  var current = '';
+  sections.forEach(function(s) {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(function(a) {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
