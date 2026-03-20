@@ -25,7 +25,7 @@ export default function MarketSection() {
       <div className="opinion-card">
         <ul>
           <li>Poland: late payment is huge (72% affected, 60+ day avg, 38% overdue). TAM = EUR50M, ~37K companies. KSeF mandatory digital invoicing from April 2026.</li>
-          <li>EU: EUR1.3B TAM, 1.82M companies. 52% report late payment problems. 47.7% of SMEs use no ERP/CRM/BI at all.</li>
+          <li>EU: EUR1.3B TAM, ~935K addressable companies (conservative). 52% report late payment problems. 47.7% of SMEs use no ERP/CRM/BI at all.</li>
           <li>Germany + France combined: ~EUR430M TAM, ~326K companies.</li>
         </ul>
       </div>
@@ -48,7 +48,7 @@ export default function MarketSection() {
         <p style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Assumptions: ARPC = EUR1,320/yr; 10-249 employee firms; B2B sectors only; no adoption rate applied.</p>
       </div>
       <details className="footnotes">
-        <summary>Methodology -- TAM Calculation</summary>
+        <summary>Methodology — TAM Calculation</summary>
         <div className="detail-content">
           <ul>
             <li><strong>Enterprise scope:</strong> 10-249 employees (NACE non-financial economy). Micro (0-9) excluded: too small for dedicated AR tooling. Large (250+) excluded: served by enterprise solutions (Tesorio, HighRadius).</li>
@@ -59,6 +59,82 @@ export default function MarketSection() {
             <li><strong>Key caveat:</strong> No adoption rate applied. The 10-249 segment is shrinking (-0.6% YoY).</li>
             <li><strong>Sources:</strong> <a href="https://bdl.stat.gov.pl/BDL/start" target="_blank" rel="noopener noreferrer">GUS Bank Danych Lokalnych</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/SBS_SC_OVW/" target="_blank" rel="noopener noreferrer">Eurostat SBS</a>, <a href="https://sunbay.io/pricing" target="_blank" rel="noopener noreferrer">Sunbay.io pricing page</a>.</li>
           </ul>
+          <p style={{ marginTop: '0.75rem', marginBottom: 0 }}><a href="#sources" style={{ color: 'var(--orange)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none' }}>View all sources</a></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Detailed TAM Calculations by Country</summary>
+        <div className="detail-content">
+          <h4 style={{ marginTop: '0.5rem' }}>Poland — Sector Breakdown</h4>
+          <table>
+            <thead><tr><th>NACE Sector</th><th>Enterprises (10-249)</th><th>Inclusion</th></tr></thead>
+            <tbody>
+              <tr><td>B+C+D+E (Industry)</td><td>18,570</td><td>Conservative</td></tr>
+              <tr><td>F (Construction)</td><td>7,491</td><td>Conservative</td></tr>
+              <tr><td>H (Transport)</td><td>4,590</td><td>Conservative</td></tr>
+              <tr><td>M (Professional/scientific/tech)</td><td>3,727</td><td>Conservative</td></tr>
+              <tr><td>N (Admin &amp; support)</td><td>2,480</td><td>Conservative</td></tr>
+              <tr style={{ fontWeight: 600 }}><td>Conservative Total</td><td style={{ color: 'var(--green)' }}>36,858</td><td></td></tr>
+              <tr><td>G46 Wholesale (100% B2B)</td><td>7,232</td><td>Extended</td></tr>
+              <tr><td>G45 Motor vehicles (50% B2B)</td><td>875</td><td>Extended</td></tr>
+              <tr><td>J Info &amp; communication (75% B2B)</td><td>1,774</td><td>Extended</td></tr>
+              <tr><td>L Real estate (50% B2B)</td><td>946</td><td>Extended</td></tr>
+              <tr style={{ fontWeight: 600 }}><td>Extended Total</td><td style={{ color: 'var(--green)' }}>47,685</td><td>(+10,827)</td></tr>
+            </tbody>
+          </table>
+          <p style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Conservative: 36,858 x EUR1,320 = EUR48.7M. Extended: 47,685 x EUR1,320 = EUR62.9M.</p>
+
+          <h4>EU-27 — Sector Breakdown</h4>
+          <table>
+            <thead><tr><th>NACE Sector</th><th>Enterprises (10-249)</th><th>Inclusion</th></tr></thead>
+            <tbody>
+              <tr><td>B (Mining)</td><td>3,543</td><td>Conservative</td></tr>
+              <tr><td>C (Manufacturing)</td><td>318,709</td><td>Conservative</td></tr>
+              <tr><td>D (Electricity/gas)</td><td>5,010</td><td>Conservative</td></tr>
+              <tr><td>E (Water/waste)</td><td>14,806</td><td>Conservative</td></tr>
+              <tr><td>F (Construction)</td><td>230,843</td><td>Conservative</td></tr>
+              <tr><td>H (Transport)</td><td>110,705</td><td>Conservative</td></tr>
+              <tr><td>M (Professional/scientific/tech)</td><td>135,742</td><td>Conservative</td></tr>
+              <tr><td>N (Admin &amp; support)</td><td>112,760</td><td>Conservative</td></tr>
+              <tr style={{ fontWeight: 600 }}><td>Conservative Total</td><td style={{ color: 'var(--green)' }}>932,118</td><td></td></tr>
+              <tr><td>G46 Wholesale (100% B2B)</td><td>99,617</td><td>Extended</td></tr>
+              <tr><td>G45 Motor vehicles (50% B2B)</td><td>26,779</td><td>Extended</td></tr>
+              <tr><td>J Info &amp; communication (75% B2B)</td><td>50,934</td><td>Extended</td></tr>
+              <tr><td>L Real estate (50% B2B)</td><td>12,743</td><td>Extended</td></tr>
+              <tr style={{ fontWeight: 600 }}><td>Extended Total</td><td style={{ color: 'var(--green)' }}>1,122,191</td><td>(+190,073)</td></tr>
+            </tbody>
+          </table>
+          <p style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Conservative: 932,118 x EUR1,320 = EUR1.23B. Extended: 1,122,191 x EUR1,320 = EUR1.48B.</p>
+
+          <h4>ARPC Derivation</h4>
+          <table>
+            <thead><tr><th>Plan</th><th>Monthly</th><th>Annual</th></tr></thead>
+            <tbody>
+              <tr><td>Basic</td><td>EUR100</td><td>EUR1,200</td></tr>
+              <tr><td>Standard</td><td>EUR120</td><td>EUR1,440</td></tr>
+              <tr style={{ fontWeight: 600 }}><td>Midpoint (ARPC)</td><td>EUR110</td><td style={{ color: 'var(--green)' }}>EUR1,320</td></tr>
+            </tbody>
+          </table>
+          <p style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Custom tier excluded. SMS add-on (EUR20/mo) excluded. Blended ARPC depends on actual customer mix.</p>
+
+          <h4>Key Assumptions Register</h4>
+          <table>
+            <thead><tr><th>ID</th><th>Assumption</th><th>Confidence</th></tr></thead>
+            <tbody>
+              <tr><td>A1</td><td>Only 10-249 employee firms are addressable</td><td>High [A]</td></tr>
+              <tr><td>A2</td><td>Micro (&lt;10) too small for dedicated AR tooling</td><td>Medium [D]</td></tr>
+              <tr><td>A3</td><td>Large (250+) served by enterprise solutions</td><td>High [A]</td></tr>
+              <tr><td>A4</td><td>ARPC = EUR1,320 (midpoint Basic/Standard)</td><td>High [A]</td></tr>
+              <tr><td>A5</td><td>G47 Retail excluded (B2C dominant)</td><td>High [A]</td></tr>
+              <tr><td>A6</td><td>G45 Motor vehicles: 50% B2B</td><td>Medium [D]</td></tr>
+              <tr><td>A7</td><td>J Info &amp; communication: 75% B2B</td><td>Medium [D]</td></tr>
+              <tr><td>A8</td><td>L Real estate: 50% B2B</td><td>Low [D]</td></tr>
+              <tr><td>A9</td><td>No adoption rate applied to enterprise counts</td><td>N/A</td></tr>
+              <tr><td>A10</td><td>10-249 segment shrinking (-0.6% YoY)</td><td>High [A]</td></tr>
+            </tbody>
+          </table>
+          <p style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Confidence key: [A] = official government statistics. [B] = survey data. [C] = market reports. [D] = own estimates.</p>
         </div>
       </details>
 

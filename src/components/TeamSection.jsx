@@ -4,9 +4,9 @@ export default function TeamSection() {
       <h2>C1. Team</h2>
       <div className="opinion-card">
         <ul>
-          <li>The CEO lacks strategic experience; the CRO (ex-COO) has a background in financial operations, not sales/revenue. CTO has no management experience. Otherwise, responsibilities barely overlap -- potential for a highly effective team.</li>
+          <li>The CEO lacks strategic experience; the CRO (ex-COO) has a background in financial operations, not sales/revenue. CTO has no management experience. Otherwise, responsibilities barely overlap — potential for a highly effective team.</li>
           <li>All three founders are now full-time. Major green flag.</li>
-          <li>All founders either worked or studied together -- they know how to work as a team.</li>
+          <li>All founders either worked or studied together — they know how to work as a team.</li>
           <li>Poland's network is strong. All 10 clients are Polish. Angel investors: Szymon Brodziak (S16VC Head of Investment Analytics, personal) and Sebastian Bobrowski (inFakt co-founder).</li>
         </ul>
       </div>
@@ -21,7 +21,7 @@ export default function TeamSection() {
         </tbody>
       </table>
       <details className="footnotes">
-        <summary>Sources &amp; Footnotes -- Team</summary>
+        <summary>Sources — Team</summary>
         <div className="detail-content">
           <ul>
             <li>LinkedIn profiles: <a href="https://www.linkedin.com/in/philipsz" target="_blank" rel="noopener noreferrer">Filip Szczecinski</a>, <a href="https://www.linkedin.com/in/dawiddzierzynski" target="_blank" rel="noopener noreferrer">Dawid Dzierzynski</a>, <a href="https://www.linkedin.com/in/cabalanikodem" target="_blank" rel="noopener noreferrer">Nikodem Cabala</a>, <a href="https://www.linkedin.com/in/kamil-jalowiec" target="_blank" rel="noopener noreferrer">Kamil Jalowiec</a>. Accessed March 2026.</li>
@@ -32,6 +32,7 @@ export default function TeamSection() {
             <li>All ~10 clients are Polish SMBs, mostly Krakow-based. Both angel investors are from the same ecosystem.</li>
             <li>Source: Sunbay Pitch Deck, team_analysis.md</li>
           </ul>
+          <p style={{ marginTop: '0.75rem', marginBottom: 0 }}><a href="#sources" style={{ color: 'var(--orange)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none' }}>View all sources</a></p>
         </div>
       </details>
     </section>

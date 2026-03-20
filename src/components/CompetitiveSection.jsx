@@ -10,12 +10,12 @@ const compRows = [
   ['Est. Revenue', '~$18K ARR', '~$3.3M', '~$4.1M', '~$3.8-6.6M', '~$11M'],
   ['Polish Integrations', '6 tools', '0', '0', '0', '0'],
   ['Payment Portal', 'No', 'Yes', 'Yes', 'Yes', 'Yes'],
-  ['Auto Calls', 'Planned', 'Yes', 'No', 'No', 'No'],
+  ['Auto Calls', 'Planned', 'Yes', 'No', 'Yes', 'No'],
   ['Credit Checks', 'No', 'Yes', 'No', 'Yes', 'No'],
   ['Entry Price', 'EUR100/mo', '$200/mo', 'Custom', '~$200/mo', 'Custom']
 ]
-const accentCells = { 'Polish Integrations': [0], 'Payment Portal': [1, 2, 3, 4], 'Auto Calls': [1], 'Credit Checks': [1, 3] }
-const riskCells = { 'Polish Integrations': [1, 2, 3, 4], 'Payment Portal': [0], 'Auto Calls': [2, 3, 4], 'Credit Checks': [0, 2, 4] }
+const accentCells = { 'Polish Integrations': [0], 'Payment Portal': [1, 2, 3, 4], 'Auto Calls': [1, 3], 'Credit Checks': [1, 3] }
+const riskCells = { 'Polish Integrations': [1, 2, 3, 4], 'Payment Portal': [0], 'Auto Calls': [2, 4], 'Credit Checks': [0, 2, 4] }
 
 export default function CompetitiveSection() {
   const [active, setActive] = useState({ sunbay: true, chaser: true, upflow: true, gaviti: true, tesorio: true })
@@ -29,9 +29,9 @@ export default function CompetitiveSection() {
       <div className="opinion-card">
         <ul>
           <li>Polish competition: Vindicat.pl (20K users, Fintech of Year 2023) = debt recovery. Comarch Optima (60K users) = ERP module. wFirma = basic reminders at 49 PLN/mo.</li>
-          <li>International: Chaser is closest -- almost every Sunbay feature plus much more, for only 2x the price. All raised $4.8-35.5M.</li>
+          <li>International: Chaser is closest — almost every Sunbay feature plus much more, for only 2x the price. All raised $4.8-35.5M.</li>
           <li>Indirect: debt recovery agencies (PLN 3.7B industry, post-default) and automation tools (Zapier/Make, require technical skill).</li>
-          <li>Sunbay's differentiator: Polish integration. Shallow -- APIs are public, barrier is low.</li>
+          <li>Sunbay's differentiator: Polish integration. Shallow — APIs are public, barrier is low.</li>
         </ul>
       </div>
 
@@ -82,16 +82,17 @@ export default function CompetitiveSection() {
         </tbody>
       </table>
       <details className="footnotes">
-        <summary>Methodology -- Competitor Data</summary>
+        <summary>Methodology — Competitor Data</summary>
         <div className="detail-content">
           <ul>
             <li><strong>Revenue estimates are third-party/algorithmic, not verified.</strong> Upflow: $4.1M from <a href="https://getlatka.com/companies/upflow" target="_blank" rel="noopener noreferrer">Getlatka</a>. Chaser: ranges from &lt;$1M (<a href="https://www.owler.com/company/chaserhq" target="_blank" rel="noopener noreferrer">Owler</a>) to $5.2M (<a href="https://growjo.com/company/Chaser" target="_blank" rel="noopener noreferrer">Growjo</a>). Gaviti: $3.8-6.6M from <a href="https://getlatka.com/companies/gaviti" target="_blank" rel="noopener noreferrer">Getlatka</a>. Tesorio: ~$11M from LeadIQ.</li>
             <li><strong>Employee counts</strong> from <a href="https://tracxn.com/d/companies/upflow/" target="_blank" rel="noopener noreferrer">Tracxn</a>, <a href="https://pitchbook.com/profiles/company/104545-63" target="_blank" rel="noopener noreferrer">PitchBook</a>, and LinkedIn.</li>
             <li><strong>Feature matrix</strong> compiled from direct observation of competitor websites: <a href="https://www.chaserhq.com/" target="_blank" rel="noopener noreferrer">chaserhq.com</a>, <a href="https://upflow.io" target="_blank" rel="noopener noreferrer">upflow.io</a>, <a href="https://www.gaviti.com" target="_blank" rel="noopener noreferrer">gaviti.com</a>, <a href="https://www.tesorio.com" target="_blank" rel="noopener noreferrer">tesorio.com</a>, <a href="https://vindicat.pl" target="_blank" rel="noopener noreferrer">vindicat.pl</a>. Accessed March 2026.</li>
             <li><strong>Funding data</strong> from <a href="https://www.crunchbase.com" target="_blank" rel="noopener noreferrer">Crunchbase</a>, PitchBook, <a href="https://app.dealroom.co/companies/chaser_1" target="_blank" rel="noopener noreferrer">Dealroom</a>.</li>
-            <li><strong>Chaser UK filings:</strong> Files "total exemption full accounts" at <a href="https://find-and-update.company-information.service.gov.uk/company/08517987/filing-history" target="_blank" rel="noopener noreferrer">UK Companies House</a> -- does not disclose revenue.</li>
+            <li><strong>Chaser UK filings:</strong> Files "total exemption full accounts" at <a href="https://find-and-update.company-information.service.gov.uk/company/08517987/filing-history" target="_blank" rel="noopener noreferrer">UK Companies House</a> — does not disclose revenue.</li>
             <li>Source: direct_competitor_landscape.md, competitor_addition.md, traction_benchmarking.md</li>
           </ul>
+          <p style={{ marginTop: '0.75rem', marginBottom: 0 }}><a href="#sources" style={{ color: 'var(--orange)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none' }}>View all sources</a></p>
         </div>
       </details>
     </section>

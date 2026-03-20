@@ -36,18 +36,19 @@ export default function ProductSection() {
         </tbody>
       </table>
       <details className="footnotes">
-        <summary>Sources &amp; Footnotes -- Product</summary>
+        <summary>Sources — Product</summary>
         <div className="detail-content">
           <ul>
             <li>Confirmed features sourced from sunbay.io website (accessed March 2026) and pitch deck. Three sources (website, deck, pitch video) describe materially different products.</li>
-            <li>Pitch video shows CRM integrations (HubSpot, Pipedrive, Docusign), bank integrations (HSBC, Revolut, Alior, mBank), payment matching, and invoicing module -- none appear on the website.</li>
+            <li>Pitch video shows CRM integrations (HubSpot, Pipedrive, Docusign), bank integrations (HSBC, Revolut, Alior, mBank), payment matching, and invoicing module — none appear on the website.</li>
             <li>AI voice agent planned via <a href="https://elevenlabs.io/blog/how-do-you-optimize-latency-for-conversational-ai" target="_blank" rel="noopener noreferrer">ElevenLabs</a> (conversational AI). Latency analysis from <a href="https://hamming.ai/resources/voice-ai-latency-whats-fast-whats-slow-how-to-fix-it" target="_blank" rel="noopener noreferrer">Hamming AI</a> (4M+ calls analyzed).</li>
             <li>EU AI Act: <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener noreferrer">Regulation (EU) 2024/1689</a>, Annex III lists AI systems in legal/employment contexts as high-risk. <a href="https://www.europarl.europa.eu/topics/en/article/20230601STO93804/eu-ai-act-first-regulation-on-artificial-intelligence" target="_blank" rel="noopener noreferrer">European Parliament summary</a>.</li>
             <li>Polish verbal contracts: <a href="https://www.dudkowiak.com/contract-law-in-poland/" target="_blank" rel="noopener noreferrer">Dudkowiak &amp; Putyra</a> confirms verbal contracts are legally binding under Polish civil law. Germany two-party consent: <a href="https://www.cloudtalk.io/blog/is-call-recording-legal/" target="_blank" rel="noopener noreferrer">CloudTalk analysis</a> citing s201 StGB.</li>
-            <li>AI hallucination in legal contexts: <a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank" rel="noopener noreferrer">Stanford HAI study</a> -- legal AI hallucinate in 1/6+ benchmarking queries (2024).</li>
+            <li>AI hallucination in legal contexts: <a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank" rel="noopener noreferrer">Stanford HAI study</a> — legal AI hallucinate in 1/6+ benchmarking queries (2024).</li>
             <li>Pricing from sunbay.io pricing page, accessed March 2026. At ACV ~EUR1,300/yr, reaching EUR1M ARR requires ~770 paying customers.</li>
             <li>Source: product_analysis.md, sunbay_website_snapshot.md</li>
           </ul>
+          <p style={{ marginTop: '0.75rem', marginBottom: 0 }}><a href="#sources" style={{ color: 'var(--orange)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none' }}>View all sources</a></p>
         </div>
       </details>
     </section>

@@ -6,7 +6,7 @@ export default function RoundReturns() {
         <ul>
           <li>Fund is $70M, avg check ~$1-1.4M. The $1.2M round is within terms, but the product does not give a perception of 59x growth potential needed to cover the fund.</li>
           <li>$1.2M for 20% is too much without proof-of-traction. Requires growth beyond a narrow market and likely a vision change.</li>
-          <li>The angel round ($60K) from Brodziak and Bobrowski is what they need now -- means to find PMF.</li>
+          <li>The angel round ($60K) from Brodziak and Bobrowski is what they need now — means to find PMF.</li>
           <li>Successful if they make foundations stronger (less replicable product) or find a market deep enough for 60x growth.</li>
         </ul>
       </div>
@@ -24,7 +24,7 @@ export default function RoundReturns() {
         </tbody>
       </table>
       <details className="footnotes">
-        <summary>Methodology -- Fund Return Math</summary>
+        <summary>Methodology — Fund Return Math</summary>
         <div className="detail-content">
           <ul>
             <li><strong>Ownership:</strong> $1.2M / $6M post-money = 20% at entry. With 50% dilution: 20% x 0.5 = 10% at exit.</li>
@@ -35,6 +35,7 @@ export default function RoundReturns() {
             <li><strong>Data limitation:</strong> Individual check sizes are not publicly disclosed. Estimates are triangulated from round sizes, co-investor counts, and fund structure.</li>
             <li>Source: s16vc_portfolio_deep_dive.md</li>
           </ul>
+          <p style={{ marginTop: '0.75rem', marginBottom: 0 }}><a href="#sources" style={{ color: 'var(--orange)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', textDecoration: 'none' }}>View all sources</a></p>
         </div>
       </details>
     </section>

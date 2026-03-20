@@ -9,10 +9,10 @@ export default function Recommendation() {
         </p>
       </div>
       <details className="footnotes">
-        <summary>Sources &amp; Footnotes</summary>
+        <summary>Sources — Recommendation</summary>
         <div className="detail-content">
           <ul>
-            <li><strong>No technical moat:</strong> All 6 Polish accounting systems Sunbay integrates with expose public REST APIs rated Low to Moderate integration difficulty. "The integration layer Sunbay has built is technically replicable by any competitor -- there is no proprietary connector advantage." (competitor_addition.md)</li>
+            <li><strong>No technical moat:</strong> All 6 Polish accounting systems Sunbay integrates with expose public REST APIs rated Low to Moderate integration difficulty. "The integration layer Sunbay has built is technically replicable by any competitor — there is no proprietary connector advantage." (competitor_addition.md)</li>
             <li><strong>Product scope:</strong> Core workflow is "connect accounting system -&gt; define collection rules and templates -&gt; system sends reminders on schedule -&gt; dashboard tracks status." Confirmed shipped features are limited to reminder sequences, workflows, tracking, interest notes, and dashboard. (product_analysis.md)</li>
             <li><strong>Polish-only advantage:</strong> No international player (<a href="https://www.chaserhq.com/" target="_blank" rel="noopener noreferrer">Chaser</a>, <a href="https://upflow.io" target="_blank" rel="noopener noreferrer">Upflow</a>, <a href="https://www.gaviti.com" target="_blank" rel="noopener noreferrer">Gaviti</a>, <a href="https://www.tesorio.com" target="_blank" rel="noopener noreferrer">Tesorio</a>) has any Polish integrations. (direct_competitor_landscape.md, Part C)</li>
             <li><strong>Fund math:</strong> $1.2M check on $70M fund (<a href="https://www.eu.vc/p/the-path-to-oversubscribed-the-learnings" target="_blank" rel="noopener noreferrer">eu.vc confirmed</a>) = ~1.7% of Fund II capital. At 20% ownership, required exit for 1x fund return = $350M (pre-dilution). (s16vc_portfolio_deep_dive.md)</li>
