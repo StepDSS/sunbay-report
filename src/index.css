@@ -157,6 +157,11 @@ h4 {
   letter-spacing: 2px;
 }
 p { margin-bottom: 1rem; color: var(--text-secondary); }
+.sunbay-logo {
+  height: 32px;
+  width: auto;
+  margin-bottom: 1.5rem;
+}
 .subtitle {
   color: var(--text-dim);
   font-size: 0.85rem;
