@@ -11,6 +11,7 @@ export default function TeamSection() {
         </ul>
       </div>
       <h4>Team Overview</h4>
+      <div style={{ overflowX: 'auto' }}>
       <table>
         <thead><tr><th>Name</th><th>Role</th><th>Background</th><th>Gap</th></tr></thead>
         <tbody>
@@ -20,6 +21,7 @@ export default function TeamSection() {
           <tr><td>Kamil Jalowiec</td><td>GTM Engineer</td><td>University student, ~1yr marketing internships</td><td>Junior. Entire sales/marketing function.</td></tr>
         </tbody>
       </table>
+      </div>
       <details className="footnotes">
         <summary>Sources — Team</summary>
         <div className="detail-content">

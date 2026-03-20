@@ -5,14 +5,14 @@ const wfData = {
     ['EU-27', 1230, '#F66731'],
     ['DE + FR', 431, '#D4562A'],
     ['Germany', 303, '#3A2F98'],
-    ['France', 128, '#5A4FBB'],
+    ['France', 127.5, '#5A4FBB'],
     ['Poland', 49, '#F3B701']
   ],
   extended: [
     ['EU-27', 1480, '#F66731'],
     ['DE + FR', 535, '#D4562A'],
     ['Germany', 376, '#3A2F98'],
-    ['France', 158, '#5A4FBB'],
+    ['France', 158.3, '#5A4FBB'],
     ['Poland', 63, '#F3B701']
   ]
 }

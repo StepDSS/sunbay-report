@@ -4,13 +4,14 @@ export default function RoundReturns() {
       <h2>C6. The Round &amp; Returns</h2>
       <div className="opinion-card">
         <ul>
-          <li>Fund is $70M, avg check ~$1-1.4M. The $1.2M round is within terms, but the product does not give a perception of 59x growth potential needed to cover the fund.</li>
+          <li>Fund is $70M, avg check ~$1-1.4M. The $1.2M round is within terms, but the product does not give a perception of ~58x growth potential needed to cover the fund.</li>
           <li>$1.2M for 20% is too much without proof-of-traction. Requires growth beyond a narrow market and likely a vision change.</li>
           <li>The angel round ($60K) from Brodziak and Bobrowski is what they need now — means to find PMF.</li>
           <li>Successful if they make foundations stronger (less replicable product) or find a market deep enough for 60x growth.</li>
         </ul>
       </div>
       <h4>Fund Math</h4>
+      <div style={{ overflowX: 'auto' }}>
       <table>
         <thead><tr><th>Metric</th><th>Value</th></tr></thead>
         <tbody>
@@ -23,6 +24,7 @@ export default function RoundReturns() {
           <tr><td>10% Market Capture (PL)</td><td>EUR5-6M rev = ~$30-40M valuation</td></tr>
         </tbody>
       </table>
+      </div>
       <details className="footnotes">
         <summary>Methodology — Fund Return Math</summary>
         <div className="detail-content">

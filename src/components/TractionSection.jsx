@@ -10,6 +10,7 @@ export default function TractionSection() {
         </ul>
       </div>
       <h4>Traction Benchmarking</h4>
+      <div style={{ overflowX: 'auto' }}>
       <table>
         <thead><tr><th>Metric</th><th>Sunbay (est.)</th><th>Seed Benchmarks</th></tr></thead>
         <tbody>
@@ -20,6 +21,7 @@ export default function TractionSection() {
           <tr><td>Valuation Multiple</td><td style={{ color: 'var(--risk)' }}>~333x rev</td><td>20-50x</td></tr>
         </tbody>
       </table>
+      </div>
       <details className="footnotes">
         <summary>Methodology — Traction Estimates</summary>
         <div className="detail-content">

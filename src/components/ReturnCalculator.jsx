@@ -53,7 +53,7 @@ export default function ReturnCalculator() {
             <label>Exit Valuation (log scale)</label>
             <span className="val">{fmt(exit)}</span>
             <input type="range" min="7" max="9.3" step="0.01" value={exitLog} onChange={(e) => setExitLog(+e.target.value)} />
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--text-dim)', marginTop: '2px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginTop: '2px' }}>
               <span>$10M</span><span>$100M</span><span>$1B</span><span>$2B</span>
             </div>
           </div>

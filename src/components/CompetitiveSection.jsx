@@ -3,7 +3,7 @@ import { useState } from 'react'
 const compNames = ['sunbay', 'chaser', 'upflow', 'gaviti', 'tesorio']
 const compLabels = ['Sunbay', 'Chaser', 'Upflow', 'Gaviti', 'Tesorio']
 const compRows = [
-  ['HQ', 'Krakow', 'London', 'Paris', 'Tel Aviv', 'San Francisco'],
+  ['HQ', 'Kraków', 'London', 'Paris', 'Tel Aviv', 'San Francisco'],
   ['Founded', '2025', '2013', '2018', '2018', '2015'],
   ['Employees', '3+1', '~30-33', '~68-72', '~35', '~62'],
   ['Funding', '$60K', '~$4.8M', '~$23M', '~$11.5M', '~$35.5M'],
@@ -12,7 +12,7 @@ const compRows = [
   ['Payment Portal', 'No', 'Yes', 'Yes', 'Yes', 'Yes'],
   ['Auto Calls', 'Planned', 'Yes', 'No', 'Yes', 'No'],
   ['Credit Checks', 'No', 'Yes', 'No', 'Yes', 'No'],
-  ['Entry Price', 'EUR100/mo', '$200/mo', 'Custom', '~$200/mo', 'Custom']
+  ['Entry Price', 'EUR100/mo', '$200/mo', 'Custom', '$45/mo', 'Custom']
 ]
 const accentCells = { 'Polish Integrations': [0], 'Payment Portal': [1, 2, 3, 4], 'Auto Calls': [1, 3], 'Credit Checks': [1, 3] }
 const riskCells = { 'Polish Integrations': [1, 2, 3, 4], 'Payment Portal': [0], 'Auto Calls': [2, 4], 'Credit Checks': [0, 2, 4] }
@@ -71,6 +71,7 @@ export default function CompetitiveSection() {
       </div>
 
       <h4>Polish Local Competitors</h4>
+      <div style={{ overflowX: 'auto' }}>
       <table>
         <thead><tr><th></th><th>Sunbay</th><th>Vindicat.pl</th><th>Comarch Optima</th><th>wFirma</th></tr></thead>
         <tbody>
@@ -81,6 +82,7 @@ export default function CompetitiveSection() {
           <tr><td>Multi-step Workflows</td><td>Yes</td><td>Yes</td><td>Yes</td><td style={{ color: 'var(--risk)' }}>No</td></tr>
         </tbody>
       </table>
+      </div>
       <details className="footnotes">
         <summary>Methodology — Competitor Data</summary>
         <div className="detail-content">

@@ -35,6 +35,7 @@ export default function MarketSection() {
           <button className={`tam-btn${tamType === 'conservative' ? ' active' : ''}`} onClick={() => setTamType('conservative')}>Conservative</button>
           <button className={`tam-btn${tamType === 'extended' ? ' active' : ''}`} onClick={() => setTamType('extended')}>Extended</button>
         </div>
+        <div style={{ overflowX: 'auto' }}>
         <table>
           <thead><tr><th>Geography</th><th>TAM</th><th>Enterprise Count</th><th>ARPC</th></tr></thead>
           <tbody>
@@ -45,6 +46,7 @@ export default function MarketSection() {
             ))}
           </tbody>
         </table>
+        </div>
         <p style={{ fontSize: '12px', color: 'var(--text-dim)' }}>Assumptions: ARPC = EUR1,320/yr; 10-249 employee firms; B2B sectors only; no adoption rate applied.</p>
       </div>
       <details className="footnotes">
@@ -139,6 +141,7 @@ export default function MarketSection() {
       </details>
 
       <h4>Late Payment Severity (Poland)</h4>
+      <div style={{ overflowX: 'auto' }}>
       <table>
         <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
         <tbody>
@@ -149,8 +152,10 @@ export default function MarketSection() {
           <tr><td>Firms planning mitigation in 2026</td><td>76%</td><td><a href="https://big.pl/raporty" target="_blank" rel="noopener noreferrer">BIG InfoMonitor</a> (n=500)</td></tr>
         </tbody>
       </table>
+      </div>
 
       <h4>Integration Landscape</h4>
+      <div style={{ overflowX: 'auto' }}>
       <table>
         <thead><tr><th>System</th><th>API Type</th><th>Difficulty</th><th>Sunbay?</th></tr></thead>
         <tbody>
@@ -167,6 +172,7 @@ export default function MarketSection() {
           <tr><td>Sage 100 (FR)</td><td>Custom</td><td style={{ color: 'var(--risk)' }}>High</td><td>No</td></tr>
         </tbody>
       </table>
+      </div>
     </section>
   )
 }

@@ -10,6 +10,7 @@ export default function ProductSection() {
         </ul>
       </div>
       <h4>Confirmed Shipped Features</h4>
+      <div style={{ overflowX: 'auto' }}>
       <table>
         <thead><tr><th>Feature</th><th>Status</th></tr></thead>
         <tbody>
@@ -25,7 +26,9 @@ export default function ProductSection() {
           <tr><td>Bank integrations (Revolut, mBank)</td><td style={{ color: 'var(--text-dim)' }}>Video only</td></tr>
         </tbody>
       </table>
+      </div>
       <h4>Pricing</h4>
+      <div style={{ overflowX: 'auto' }}>
       <table>
         <thead><tr><th>Plan</th><th>Price</th><th>Scope</th></tr></thead>
         <tbody>
@@ -35,6 +38,7 @@ export default function ProductSection() {
           <tr><td>SMS add-on</td><td>+EUR20/mo</td><td>100 SMS credits</td></tr>
         </tbody>
       </table>
+      </div>
       <details className="footnotes">
         <summary>Sources — Product</summary>
         <div className="detail-content">

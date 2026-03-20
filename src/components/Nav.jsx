@@ -20,11 +20,13 @@ export default function Nav() {
   const [activeId, setActiveId] = useState('header')
 
   useEffect(() => {
+    const targetIds = navItems.map((item) => item.href.slice(1))
     function onScroll() {
-      const sections = document.querySelectorAll('section[id]')
+      const selector = targetIds.map((id) => `[id="${id}"]`).join(',')
+      const elements = document.querySelectorAll(selector)
       let current = ''
-      sections.forEach((s) => {
-        if (window.scrollY >= s.offsetTop - 100) current = s.id
+      elements.forEach((el) => {
+        if (window.scrollY >= el.offsetTop - 100) current = el.id
       })
       if (current) setActiveId(current)
     }

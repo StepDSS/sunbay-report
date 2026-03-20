@@ -357,7 +357,7 @@ details .detail-content { padding: 1rem 1.25rem; }
   color: var(--yellow);
   margin-top: 6px;
 }
-.calc-out .value.risk { color: #FF6B6B; }
+.calc-out .value.risk { color: var(--risk); }
 
 /* === TOGGLES === */
 .comp-toggles {
