@@ -21,8 +21,6 @@ export default function DebtRecoveryCalc() {
   return (
     <section id="debt-recovery-calc">
       <h2>Debt Recovery Cost Comparison</h2>
-      <p>Compare the annual cost of outsourcing overdue collections to a recovery agency vs. using Sunbay's flat-fee AR automation.</p>
-
       <div className="calc-container">
         <div className="calc-grid">
           <div className="calc-input">
@@ -44,42 +42,13 @@ export default function DebtRecoveryCalc() {
             </div>
           </div>
         </div>
-
-        <div className="vs-row">
-          <div className="vs-card agency">
-            <div className="vs-label">Recovery Agency</div>
-            <div className="vs-amount">{fmtEur(annualAgencyCost)}<span>/yr</span></div>
-            <div className="vs-detail">{fmtEur(monthlyOverdue)} overdue/mo x {commission}% commission</div>
-          </div>
-          <div className="vs-divider">VS</div>
-          <div className="vs-card sunbay">
-            <div className="vs-label">Sunbay.io</div>
-            <div className="vs-amount">EUR 1,320<span>/yr</span></div>
-            <div className="vs-detail">EUR 110/mo flat fee (midpoint Basic/Standard)</div>
-          </div>
-        </div>
-
         <div className="calc-outputs">
-          <div className="calc-out">
-            <div className="label">Monthly Overdue Amount</div>
-            <div className="value">{fmtEur(monthlyOverdue)}</div>
-          </div>
-          <div className="calc-out">
-            <div className="label">Annual Savings</div>
-            <div className="value" style={{ color: savings > 0 ? 'var(--green)' : 'var(--risk)' }}>
-              {savings > 0 ? '+' : ''}{fmtEur(savings)}
-            </div>
-          </div>
-          <div className="calc-out">
-            <div className="label">ROI Multiple</div>
-            <div className="value" style={{ color: roi > 1 ? 'var(--green)' : 'var(--yellow)' }}>
-              {roi > 0 ? roi.toFixed(1) + 'x' : 'N/A'}
-            </div>
-          </div>
-          <div className="calc-out">
-            <div className="label">Breakeven Receivables</div>
-            <div className="value">{fmtEur(breakeven)}<span style={{ fontSize: '10px', opacity: 0.6 }}>/mo</span></div>
-          </div>
+          <div className="calc-out"><div className="label">Monthly Overdue Amount</div><div className="value">{fmtEur(monthlyOverdue)}</div></div>
+          <div className="calc-out"><div className="label">Annual Agency Cost</div><div className="value risk">{fmtEur(annualAgencyCost)}</div></div>
+          <div className="calc-out"><div className="label">Annual Sunbay Cost</div><div className="value">{fmtEur(annualSunbay)}</div></div>
+          <div className="calc-out"><div className="label">Annual Savings</div><div className="value">{savings > 0 ? '+' : ''}{fmtEur(savings)}</div></div>
+          <div className="calc-out"><div className="label">ROI Multiple</div><div className="value">{roi > 0 ? roi.toFixed(1) + 'x' : 'N/A'}</div></div>
+          <div className="calc-out"><div className="label">Breakeven Receivables</div><div className="value risk">{fmtEur(breakeven)}/mo</div></div>
         </div>
       </div>
 

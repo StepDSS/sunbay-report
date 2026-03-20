@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const memoItems = [
+const navItems = [
   { href: '#header', label: 'Overview' },
   { href: '#recommendation', label: 'Recommendation' },
   { href: '#arguments', label: 'Key Arguments & Risks' },
@@ -10,27 +10,21 @@ const memoItems = [
   { href: '#competitive', label: 'Competitive Landscape', sub: true },
   { href: '#traction', label: 'Traction & Benchmarks', sub: true },
   { href: '#round', label: 'The Round & Returns', sub: true },
-  { href: '#calculator', label: 'Return Calculator' },
-  { href: '#competitor-comparison', label: 'Competitor Comparison' },
-  { href: '#tam-waterfall', label: 'TAM Waterfall' },
+  { href: '#interactive-analysis', label: 'Interactive Analysis' },
+  { href: '#tam-filter', label: 'TAM Adoption Filter', sub: true, analysis: true },
+  { href: '#tam-waterfall', label: 'TAM Waterfall', sub: true, analysis: true },
+  { href: '#integration-heatmap', label: 'Integration Heatmap', sub: true, analysis: true },
+  { href: '#debt-recovery-calc', label: 'Debt Recovery Calc', sub: true, analysis: true },
+  { href: '#calculator', label: 'Return Sensitivity', sub: true, analysis: true },
   { href: '#sources', label: 'Sources' },
 ]
 
-const analysisItems = [
-  { href: '#integration-heatmap', label: 'Integration Heatmap' },
-  { href: '#tam-filter', label: 'TAM Adoption Filter' },
-  { href: '#debt-recovery-calc', label: 'Debt Recovery Calculator' },
-  { href: '#competitor-radar', label: 'Competitor Radar' },
-  { href: '#calculator', label: 'Return Sensitivity Model' },
-  { href: '#tam-waterfall', label: 'TAM Waterfall' },
-]
-
-export default function Nav({ view, setView }) {
-  const [activeId, setActiveId] = useState('')
-  const navItems = view === 'memo' ? memoItems : analysisItems
+export default function Nav({ analysisOpen }) {
+  const [activeId, setActiveId] = useState('header')
 
   useEffect(() => {
-    const targetIds = navItems.map((item) => item.href.slice(1))
+    const visible = navItems.filter((item) => !item.analysis || analysisOpen)
+    const targetIds = visible.map((item) => item.href.slice(1))
     function onScroll() {
       const selector = targetIds.map((id) => `[id="${id}"]`).join(',')
       const elements = document.querySelectorAll(selector)
@@ -41,30 +35,24 @@ export default function Nav({ view, setView }) {
       if (current) setActiveId(current)
     }
     window.addEventListener('scroll', onScroll)
-    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
-  }, [view])
+  }, [analysisOpen])
 
   return (
     <nav>
       <div className="nav-title">Sunbay.io Memo</div>
-      <div className="nav-view-toggle">
-        <button className={`tam-btn${view === 'memo' ? ' active' : ''}`} onClick={() => setView('memo')}>
-          Memo
-        </button>
-        <button className={`tam-btn${view === 'analysis' ? ' active' : ''}`} onClick={() => setView('analysis')}>
-          Analysis
-        </button>
-      </div>
-      {navItems.map((item) => (
-        <a
-          key={item.href}
-          href={item.href}
-          className={`${item.sub ? 'sub' : ''}${activeId === item.href.slice(1) ? ' active' : ''}`}
-        >
-          {item.label}
-        </a>
-      ))}
+      {navItems.map((item) => {
+        if (item.analysis && !analysisOpen) return null
+        return (
+          <a
+            key={item.href}
+            href={item.href}
+            className={`${item.sub ? 'sub' : ''}${activeId === item.href.slice(1) ? ' active' : ''}`}
+          >
+            {item.label}
+          </a>
+        )
+      })}
     </nav>
   )
 }

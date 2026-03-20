@@ -30,16 +30,21 @@ export default function TAMWaterfall() {
         <button className={`tam-btn${type === 'extended' ? ' active' : ''}`} onClick={() => setType('extended')}>Extended</button>
       </div>
       <div>
-        {data.map(([label, value, color]) => (
-          <div className="wf-bar-row" key={label}>
-            <div className="wf-bar-label">{label}</div>
-            <div className="wf-bar-track">
-              <div className="wf-bar" style={{ width: `${Math.max((value / maxVal) * 100, 3)}%`, background: color }}>
-                <span>EUR{value}M</span>
+        {data.map(([label, value, color]) => {
+          const pct = (value / maxVal) * 100
+          const narrow = pct < 12
+          return (
+            <div className="wf-bar-row" key={label}>
+              <div className="wf-bar-label">{label}</div>
+              <div className="wf-bar-track">
+                <div className="wf-bar" style={{ width: `${Math.max(pct, 3)}%`, background: color }}>
+                  {!narrow && <span>EUR{value}M</span>}
+                </div>
+                {narrow && <span className="wf-bar-outside" style={{ color }}>EUR{value}M</span>}
               </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </section>
   )

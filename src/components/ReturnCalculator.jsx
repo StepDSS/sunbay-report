@@ -26,7 +26,7 @@ export default function ReturnCalculator() {
 
   return (
     <section id="calculator">
-      <h2>D. Return Sensitivity Model</h2>
+      <h3>Return Sensitivity Model</h3>
       <div className="calc-container">
         <div className="calc-grid">
           <div className="calc-input">

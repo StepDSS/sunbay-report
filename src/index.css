@@ -501,6 +501,17 @@ details .detail-content { padding: 1rem 1.25rem; }
   font-size: 12px;
   font-weight: 700;
   color: var(--text-on-dark);
+  white-space: nowrap;
+}
+.wf-bar-outside {
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+.wf-bar-track {
+  display: flex;
+  align-items: center;
 }
 
 /* === SOURCES === */
@@ -539,6 +550,40 @@ td a:hover { color: var(--orange); text-decoration-color: var(--orange); }
   color: var(--text);
   font-weight: 600;
   font-size: 14px;
+}
+
+/* === ANALYSIS OPEN BUTTON === */
+.analysis-open-btn {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--bg-purple);
+  color: var(--text-on-dark);
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all var(--ease);
+  box-shadow: var(--shadow);
+}
+.analysis-open-btn:hover {
+  filter: brightness(1.15);
+  box-shadow: var(--shadow-lg);
+}
+.analysis-open-btn.close {
+  background: var(--bg-cream);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  box-shadow: none;
+  margin-bottom: 2rem;
+}
+.analysis-open-btn.close:hover {
+  border-color: var(--text-dim);
+  color: var(--text-secondary);
+  filter: none;
 }
 
 /* === NAV VIEW TOGGLE === */

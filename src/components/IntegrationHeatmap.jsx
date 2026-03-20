@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 
 const systems = {
   Poland: [
@@ -74,8 +74,8 @@ export default function IntegrationHeatmap() {
           </thead>
           <tbody>
             {visibleCountries.map((country) => (
-              <>
-                <tr key={`header-${country}`} className="heatmap-country-row">
+              <Fragment key={country}>
+                <tr className="heatmap-country-row">
                   <td colSpan={4}>
                     <strong>{country}</strong>
                     <span className="heatmap-count">
@@ -108,7 +108,7 @@ export default function IntegrationHeatmap() {
                     </td>
                   </tr>
                 ))}
-              </>
+              </Fragment>
             ))}
           </tbody>
         </table>

@@ -15,41 +15,42 @@ import SourcesSection from './components/SourcesSection'
 import IntegrationHeatmap from './components/IntegrationHeatmap'
 import TAMAdoptionFilter from './components/TAMAdoptionFilter'
 import DebtRecoveryCalc from './components/DebtRecoveryCalc'
-import CompetitorRadar from './components/CompetitorRadar'
 
 export default function App() {
-  const [view, setView] = useState('memo')
+  const [analysisOpen, setAnalysisOpen] = useState(false)
   return (
     <>
-      <Nav view={view} setView={setView} />
+      <Nav analysisOpen={analysisOpen} />
       <main>
-        {view === 'memo' ? (
-          <>
-            <Header />
-            <Recommendation />
-            <KeyArguments />
-            <TeamSection />
-            <ProductSection />
-            <MarketSection />
-            <CompetitiveSection />
-            <TractionSection />
-            <RoundReturns />
-            <ReturnCalculator />
-            <TAMWaterfall />
-            <SourcesSection />
-          </>
-        ) : (
-          <>
-            <h1 style={{ marginBottom: '0.5rem' }}>Interactive Analysis</h1>
-            <p className="subtitle">Sunbay.io — Data Explorer</p>
-            <IntegrationHeatmap />
-            <TAMAdoptionFilter />
-            <DebtRecoveryCalc />
-            <CompetitorRadar />
-            <ReturnCalculator />
-            <TAMWaterfall />
-          </>
-        )}
+        <Header />
+        <Recommendation />
+        <KeyArguments />
+        <TeamSection />
+        <ProductSection />
+        <MarketSection />
+        <CompetitiveSection />
+        <TractionSection />
+        <RoundReturns />
+        <section id="interactive-analysis">
+          <h2>D. Interactive Analysis</h2>
+          {!analysisOpen ? (
+            <button className="analysis-open-btn" onClick={() => setAnalysisOpen(true)}>
+              Open Interactive Analysis
+            </button>
+          ) : (
+            <>
+              <button className="analysis-open-btn close" onClick={() => setAnalysisOpen(false)}>
+                Close Interactive Analysis
+              </button>
+              <TAMAdoptionFilter />
+              <TAMWaterfall />
+              <IntegrationHeatmap />
+              <DebtRecoveryCalc />
+              <ReturnCalculator />
+</>
+          )}
+        </section>
+        <SourcesSection />
       </main>
     </>
   )
