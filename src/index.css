@@ -157,10 +157,20 @@ h4 {
   letter-spacing: 2px;
 }
 p { margin-bottom: 1rem; color: var(--text-secondary); }
-.sunbay-logo {
-  height: 32px;
-  width: auto;
+.logo-pairing {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 1.5rem;
+}
+.paired-logo {
+  height: 28px;
+  width: auto;
+}
+.logo-separator {
+  font-size: 1.25rem;
+  color: var(--text-dim);
+  font-weight: 300;
 }
 .subtitle {
   color: var(--text-dim);

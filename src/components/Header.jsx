@@ -1,7 +1,11 @@
 export default function Header() {
   return (
     <section id="header">
-      <img src="/sunbay_logo.svg" alt="Sunbay.io logo" className="sunbay-logo" />
+      <div className="logo-pairing">
+        <img src="/sunbay_logo.svg" alt="Sunbay.io logo" className="paired-logo" />
+        <span className="logo-separator">&times;</span>
+        <img src="/s16vc_logo.svg" alt="S16VC logo" className="paired-logo" />
+      </div>
       <h1>Investment Memo: Sunbay.io</h1>
       <p className="subtitle">Prepared for S16VC | March 2026</p>
       <p className="one-liner">B2B accounts receivable collections automation for Polish SMBs</p>
